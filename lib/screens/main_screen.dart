@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:luxnewyorkapp/screens/profile_screen.dart';
-import 'package:luxnewyorkapp/screens/wishlist_screen.dart';
-import 'package:luxnewyorkapp/screens/cart_screen.dart';
-import 'package:luxnewyorkapp/screens/home_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/profile_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
