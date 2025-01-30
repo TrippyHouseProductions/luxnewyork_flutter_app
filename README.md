@@ -2,8 +2,6 @@
 
 ### **A modern eCommerce app for conceptual luxury eyewear company. Built with Flutter.**
 
-![LuxNewYork Banner](https://via.placeholder.com/1000x400?text=LuxNewYork+Flutter+App)
-
 ---
 
 ## **Features**
@@ -20,7 +18,7 @@
 
 ---
 
-## **🚀 Getting Started**
+## **Getting Started**
 
 ### **1. Prerequisites**
 
