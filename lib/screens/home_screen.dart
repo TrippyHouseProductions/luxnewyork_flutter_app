@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildProductGrid(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
       itemCount: products.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
