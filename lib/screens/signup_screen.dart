@@ -42,6 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(backgroundColor: theme.colorScheme.surface),
       body: Center(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40),
           child: Form(
             key: _formKey,
