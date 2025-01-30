@@ -46,31 +46,29 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Profile", style: textTheme.headlineSmall)),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // User Profile Info
-            const _UserProfileSection(),
-            const SizedBox(height: 30),
-
-            // Profile Menu Options
-            const _ProfileMenu(),
-
-            // Logout Button
-            const Spacer(),
-            ElevatedButton(
-              onPressed: () => _showLogoutDialog(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: colorScheme.error,
-                foregroundColor: colorScheme.onError,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: textTheme.labelLarge,
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const _UserProfileSection(),
+              const SizedBox(height: 30),
+              const _ProfileMenu(),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () => _showLogoutDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: colorScheme.error,
+                  foregroundColor: colorScheme.onError,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  textStyle: textTheme.labelLarge,
+                ),
+                child: const Text("Logout"),
               ),
-              child: const Text("Logout"),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
