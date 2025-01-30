@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/models/product_data.dart';
-import 'package:luxnewyorkapp/screens/product_detail_screen.dart'; // Import Product Detail Screen
+import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart'; // Import Product Detail Screen
 
 class ProductCard extends StatelessWidget {
   final Product product;
