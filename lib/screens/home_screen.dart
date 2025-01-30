@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
-import 'package:luxnewyorkapp/widgets/product_card.dart';
+import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
 import 'package:luxnewyorkapp/models/product_data.dart';
 
 class HomeScreen extends StatelessWidget {
