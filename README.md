@@ -2,8 +2,7 @@
 
 ### **A modern eCommerce app for conceptual luxury eyewear company. Built with Flutter.**
 
-![LuxNewYork Banner](https://via.placeholder.com/1000x400?text=LuxNewYork+Flutter+App)  
-_(Replace this with an actual banner image of your app)_
+![LuxNewYork Banner](https://via.placeholder.com/1000x400?text=LuxNewYork+Flutter+App)
 
 ---
 
@@ -36,7 +35,7 @@ Before running the app, make sure you have:
 Open a terminal and run:
 
 ```sh
-git clone https://github.com/your-username/luxnewyork_flutter_app.git
+git clone https://github.com/TrippyHouseProductions/luxnewyork_flutter_app.git
 cd luxnewyork_flutter_app
 ```
 
@@ -50,7 +49,7 @@ flutter pub get
 
 ### **4️. Run the App**
 
-#### **▶️ On an Emulator or Real Device**
+#### **On an Emulator or Real Device**
 
 ```sh
 flutter run
