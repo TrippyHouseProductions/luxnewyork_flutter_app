@@ -29,6 +29,7 @@ class _CategoryFilterState extends State<CategoryFilter> {
       //ANCHOR - Use of scrollable list
       child: ListView.builder(
         scrollDirection: Axis.horizontal, // scrollable
+        physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
         itemCount: _categories.length,
         itemBuilder: (context, index) {
           return GestureDetector(
