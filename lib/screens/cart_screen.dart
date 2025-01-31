@@ -6,6 +6,7 @@ class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CartScreenState createState() => _CartScreenState();
 }
 
