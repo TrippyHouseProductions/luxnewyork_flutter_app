@@ -10,63 +10,73 @@ class WishlistScreen extends StatelessWidget {
     // Get the first 2 products from the products list
     final List<Product> wishlistProducts = products.take(2).toList();
 
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Wishlist Title
-          Text("Your Wishlist", style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 20), // Spacing
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Wishlist"),
+      ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Wishlist Title
+              Text("Your Wishlist",
+                  style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 20), // Spacing
 
-          // If Wishlist is empty, show message
-          if (wishlistProducts.isEmpty)
-            Text("Your Wishlist is Empty!",
-                style: Theme.of(context).textTheme.bodyMedium),
+              // If Wishlist is empty, show message
+              if (wishlistProducts.isEmpty)
+                Text("Your Wishlist is Empty!",
+                    style: Theme.of(context).textTheme.bodyMedium),
 
-          // Display Demo Products (if there are products in the wishlist)
-          if (wishlistProducts.isNotEmpty)
-            ...wishlistProducts.map((product) {
-              return Card(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              // Display Demo Products (if there are products in the wishlist)
+              if (wishlistProducts.isNotEmpty)
+                ...wishlistProducts.map((product) {
+                  return Card(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ListTile(
+                      leading: Image.asset(
+                        product.imagePath, // Load product image
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Text(
+                        product.name,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      subtitle: Text(
+                        product.price,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          // TODO: Logic to remove Item
+                        },
+                      ),
+                    ),
+                  );
+                }),
+
+              // Continue Shopping Button
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MainScreen()),
                 ),
-                child: ListTile(
-                  leading: Image.asset(
-                    product.imagePath, // Load product image
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  ),
-                  title: Text(
-                    product.name,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  subtitle: Text(
-                    product.price,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      //TODO - Logic to remove Item
-                    },
-                  ),
-                ),
-              );
-            }),
-
-          // Continue Shopping Button
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const MainScreen()),
-            ),
-            child: const Text("Continue Shopping"),
+                child: const Text("Continue Shopping"),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
