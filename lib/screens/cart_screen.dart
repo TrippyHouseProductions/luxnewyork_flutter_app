@@ -11,14 +11,13 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // Initializing the demo cart products (with quantity)
   List<ProductWithQuantity> cartProducts = [
     ProductWithQuantity(
-      product: products[0], // First product from product_data.dart
+      product: products[0],
       quantity: 1,
     ),
     ProductWithQuantity(
-      product: products[1], // Second product from product_data.dart
+      product: products[1],
       quantity: 1,
     ),
   ];
@@ -39,7 +38,7 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  // Show a Snackbar when an item is deleted
+  // Show Snackbar when an item is deleted
   void _showDeleteMessage(String productName) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -165,7 +164,6 @@ class _CartScreenState extends State<CartScreen> {
                   ElevatedButton(
                     onPressed: () {
                       // TODO: Implement Checkout Logic
-                      print('Proceeding to Checkout');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorScheme.primary,
