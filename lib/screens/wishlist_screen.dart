@@ -86,7 +86,7 @@ class WishlistScreen extends StatelessWidget {
                   ),
                 ),
               );
-            }).toList(),
+            }),
 
           // Continue Shopping Button
           const SizedBox(height: 20),
