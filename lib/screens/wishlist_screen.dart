@@ -5,11 +5,21 @@ import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
 
+  // Show delete message
+  void _showDeleteMessage(BuildContext context, String productName) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$productName deleted successfully'),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    // Get the first 2 products for now (demo purpose)
+    // Get the first 2 products
     final List<Product> wishlistProducts = products.take(2).toList();
 
     return Scaffold(
@@ -51,7 +61,9 @@ class WishlistScreen extends StatelessWidget {
                       trailing: IconButton(
                         icon: const Icon(Icons.delete),
                         onPressed: () {
-                          // TODO: Logic to remove Item from Wishlist
+                          // Show message
+                          _showDeleteMessage(context, product.name);
+                          //TODO - Add delete product logic
                         },
                       ),
                     ),
