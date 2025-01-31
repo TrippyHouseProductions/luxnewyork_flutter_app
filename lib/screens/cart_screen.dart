@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luxnewyork_flutter_app/models/product_data.dart'; // Import product data
+import 'package:luxnewyork_flutter_app/models/product_data.dart';
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 
 class CartScreen extends StatefulWidget {
@@ -81,64 +81,61 @@ class _CartScreenState extends State<CartScreen> {
               const SizedBox(height: 20),
 
               // Display Cart Products
-              if (cartProducts.isEmpty)
-                Text("Your Cart is Empty!", style: theme.textTheme.bodyMedium),
-              if (cartProducts.isNotEmpty)
-                ...cartProducts.map((cartItem) {
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              ...cartProducts.map((cartItem) {
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ListTile(
+                    leading: Image.asset(
+                      cartItem.product.imagePath,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
                     ),
-                    child: ListTile(
-                      leading: Image.asset(
-                        cartItem.product.imagePath,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                      title: Text(cartItem.product.name,
-                          style: theme.textTheme.bodyLarge),
-                      subtitle: Text(
-                        '${cartItem.product.price} | Quantity: ${cartItem.quantity}',
-                        style: theme.textTheme.titleMedium,
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () {
-                              _decreaseQuantity(cartProducts.indexOf(cartItem));
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {
-                              _increaseQuantity(cartProducts.indexOf(cartItem));
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              _removeItem(cartProducts.indexOf(cartItem));
-                            },
-                          ),
-                        ],
-                      ),
+                    title: Text(cartItem.product.name,
+                        style: theme.textTheme.bodyLarge),
+                    subtitle: Text(
+                      '${cartItem.product.price} | Quantity: ${cartItem.quantity}',
+                      style: theme.textTheme.titleMedium,
                     ),
-                  );
-                }),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.remove),
+                          onPressed: () {
+                            _decreaseQuantity(cartProducts.indexOf(cartItem));
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.add),
+                          onPressed: () {
+                            _increaseQuantity(cartProducts.indexOf(cartItem));
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            _removeItem(cartProducts.indexOf(cartItem));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
 
               const SizedBox(height: 20),
 
               // Display Total Price
-              if (cartProducts.isNotEmpty)
-                Text(
-                  "Total Price: \$${_calculateTotal().toStringAsFixed(2)}",
-                  style: theme.textTheme.titleLarge
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                ),
+
+              Text(
+                "Total Price: \$${_calculateTotal().toStringAsFixed(2)}",
+                style: theme.textTheme.titleLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
 
               const SizedBox(height: 20),
 

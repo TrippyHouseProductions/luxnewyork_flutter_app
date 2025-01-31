@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luxnewyork_flutter_app/models/product_data.dart'; // Import product data
+import 'package:luxnewyork_flutter_app/models/product_data.dart';
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 
 class WishlistScreen extends StatelessWidget {
