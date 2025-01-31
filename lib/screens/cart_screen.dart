@@ -160,7 +160,7 @@ class _CartScreenState extends State<CartScreen> {
                   // Checkout Button
                   ElevatedButton(
                     onPressed: () {
-                      // TODO: Implement Checkout Logic
+                      // TODO: Add Checkout Logic
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorScheme.primary,
