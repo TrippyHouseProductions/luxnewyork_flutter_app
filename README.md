@@ -30,7 +30,7 @@ Before running the app, make sure you have:
 
 ### **2️. Clone the Repository**
 
-Open a terminal and run:
+Open a terminal in VS Code and run:
 
 ```sh
 git clone https://github.com/TrippyHouseProductions/luxnewyork_flutter_app.git
