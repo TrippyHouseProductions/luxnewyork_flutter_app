@@ -193,6 +193,7 @@ import 'package:http/http.dart' as http;
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/signup_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/forgot_password_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -231,7 +232,22 @@ class _LoginScreenState extends State<LoginScreen> {
         }),
       );
 
+      // NOTE the respose status before getting the api token
+      // if (response.statusCode == 200) {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const MainScreen()),
+      //   );
+      // }
       if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final token = responseData['token'];
+
+        // Store token in shared preferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('auth_token', token);
+
+        // Navigate to main screen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MainScreen()),
