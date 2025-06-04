@@ -3,6 +3,7 @@ import 'package:luxnewyork_flutter_app/screens/profile_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -72,6 +73,8 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.favorite), label: "Wishlist"),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag), label: "Cart"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.local_shipping), label: "My Orders"),
         ],
       ),
     );
