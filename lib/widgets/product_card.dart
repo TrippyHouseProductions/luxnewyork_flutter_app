@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/models/product_data.dart';
+import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
 
 class ProductCard extends StatelessWidget {
@@ -52,8 +53,10 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(10)),
-                child: Image.asset(
-                  product.imagePath,
+                child: Image(
+                  image: product.imagePath.startsWith('http')
+                      ? NetworkImage(product.imagePath)
+                      : AssetImage(product.imagePath) as ImageProvider,
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),

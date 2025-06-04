@@ -19,9 +19,9 @@ class _MainScreenState extends State<MainScreen> {
   // NOTE List of screens for navigation
   final List<Widget> _screens = [
     const HomeScreen(),
-    const WishlistScreen(),
-    const CartScreen(),
-    const MyOrdersScreen(),
+    // const WishlistScreen(),
+    // const CartScreen(),
+    // const MyOrdersScreen(),
   ];
 
   // Handles BottomNavigationBar item selection

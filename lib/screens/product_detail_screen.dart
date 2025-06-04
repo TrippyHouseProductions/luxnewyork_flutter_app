@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/models/product_data.dart';
+import 'package:luxnewyork_flutter_app/models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
