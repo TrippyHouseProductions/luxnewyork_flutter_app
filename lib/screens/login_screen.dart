@@ -239,6 +239,8 @@ class _LoginScreenState extends State<LoginScreen> {
       //     MaterialPageRoute(builder: (context) => const MainScreen()),
       //   );
       // }
+
+      // NOTE Check if the response is successful
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         final token = responseData['token'];
