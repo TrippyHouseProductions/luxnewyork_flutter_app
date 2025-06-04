@@ -19,7 +19,7 @@ List<Product> products = [
     name: "LNY V-1",
     category: "Unisex Sunglasses",
     price: "\$52.00",
-    imagePath: "../assets/images/1.webp",
+    imagePath: "assets/images/1.webp",
     description:
         "The LNY V-1 is a stylish unisex sunglass with a modern design perfect for outdoor activities and casual wear.",
   ),

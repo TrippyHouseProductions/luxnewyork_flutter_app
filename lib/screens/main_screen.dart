@@ -3,7 +3,6 @@ import 'package:luxnewyork_flutter_app/screens/profile_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
-import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -34,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      //ANCHOR - Use of top navigation
+      // ANCHOR - Use of top navigation
       appBar: AppBar(
         elevation: 0,
         title: Text("LUXNEWYORK", style: theme.textTheme.bodyMedium),
@@ -60,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      //ANCHOR - Use of bottom navigation
+      // ANCHOR - Use of bottom navigation
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: colorScheme.surface,
         selectedItemColor: colorScheme.primary,
