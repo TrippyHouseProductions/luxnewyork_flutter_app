@@ -89,7 +89,7 @@ class _UserProfileSection extends StatelessWidget {
         CircleAvatar(
           radius: 50,
           backgroundColor: colorScheme.primaryContainer,
-          backgroundImage: const AssetImage("../assets/images/user.webp"),
+          backgroundImage: const AssetImage("assets/images/user.webp"),
         ),
         const SizedBox(height: 10),
         Text("Hirusha Gunasena", style: textTheme.headlineSmall),
