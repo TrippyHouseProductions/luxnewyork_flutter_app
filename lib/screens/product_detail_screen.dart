@@ -181,9 +181,9 @@ class ProductDetailScreen extends StatelessWidget {
                 const Icon(Icons.broken_image, size: 100),
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
-              return SizedBox(
+              return const SizedBox(
                 height: 300,
-                child: const Center(child: CircularProgressIndicator()),
+                child: Center(child: CircularProgressIndicator()),
               );
             },
           ),

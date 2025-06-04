@@ -129,6 +129,8 @@
 //   }
 // }
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -157,11 +159,11 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () async {
               Navigator.pop(context);
 
-              // ✅ Remove token from SharedPreferences
+              // NOTE Remove token from SharedPreferences
               final prefs = await SharedPreferences.getInstance();
               await prefs.remove('auth_token');
 
-              // ✅ Navigate to login
+              // NOTE Navigate to login
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (_) => const LoginScreen()),

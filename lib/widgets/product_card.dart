@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 // NOTE before loading products from the api this was used to load demo product data
 // import 'package:luxnewyork_flutter_app/models/product_data.dart';
