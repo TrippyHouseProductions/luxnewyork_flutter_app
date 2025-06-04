@@ -345,8 +345,9 @@ class _LoginScreenState extends State<LoginScreen> {
           keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(),
           validator: (value) {
-            if (value == null || value.isEmpty)
+            if (value == null || value.isEmpty) {
               return "Please enter your email";
+            }
             final emailRegex =
                 RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
             if (!emailRegex.hasMatch(value)) return "Enter a valid email";
@@ -375,10 +376,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           validator: (value) {
-            if (value == null || value.isEmpty)
+            if (value == null || value.isEmpty) {
               return "Please enter your password";
-            if (value.length < 6)
+            }
+            if (value.length < 6) {
               return "Password must be at least 6 characters";
+            }
             return null;
           },
         ),
