@@ -14,9 +14,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0; // Default to Home
+  int _selectedIndex = 0; // NOTE Default to Home
 
-  // List of screens for navigation
+  // NOTE List of screens for navigation
   final List<Widget> _screens = [
     const HomeScreen(),
     const WishlistScreen(),
@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       body: Column(
         children: [
           const SizedBox(height: 10),
-          // Use IndexedStack to keep all screens alive
+          // NOTE Use IndexedStack to keep all screens alive
           Expanded(
             child: IndexedStack(
               index: _selectedIndex,

@@ -87,14 +87,36 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Product Grid - //ANCHOR - Use of scrolable list
+  // ANCHOR - Use of scrolable list
+  // Widget _buildProductGrid(BuildContext context) {
+  //   return GridView.builder(
+  //     shrinkWrap: true,
+  //     physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
+  //     itemCount: products.length,
+  //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+  //       crossAxisCount: 2,
+  //       crossAxisSpacing: 10,
+  //       mainAxisSpacing: 10,
+  //       childAspectRatio: 0.6,
+  //     ),
+  //     itemBuilder: (context, index) {
+  //       return ProductCard(product: products[index]);
+  //     },
+  //   );
+  // }
   Widget _buildProductGrid(BuildContext context) {
+    // Determine current orientation
+    Orientation orientation = MediaQuery.of(context).orientation;
+
+    // Set crossAxisCount based on orientation
+    int crossAxisCount = orientation == Orientation.portrait ? 2 : 4;
+
     return GridView.builder(
       shrinkWrap: true,
-      physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
+      physics: const BouncingScrollPhysics(),
       itemCount: products.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 0.6,
