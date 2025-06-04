@@ -61,8 +61,7 @@ class MyOrdersScreen extends StatelessWidget {
                       },
                     )
                   : Center(
-                      child: Text('No orders yet',
-                          style: textTheme.bodyMedium),
+                      child: Text('No orders yet', style: textTheme.bodyMedium),
                     ),
             ),
           ],
