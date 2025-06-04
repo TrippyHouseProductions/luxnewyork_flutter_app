@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:luxnewyork_flutter_app/models/product_data.dart';
+// NOTE before loading products from the api this was used to load demo product data
+// import 'package:luxnewyork_flutter_app/models/product_data.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
 

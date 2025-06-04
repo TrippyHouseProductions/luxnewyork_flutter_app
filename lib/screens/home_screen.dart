@@ -130,9 +130,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// ANCHOR widgets
 import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
+import 'package:luxnewyork_flutter_app/widgets/search_bar.dart';
+
+// ANCHOR models
 import 'package:luxnewyork_flutter_app/models/product.dart';
+
+// ANCHOR services
 import 'package:luxnewyork_flutter_app/services/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -144,17 +151,34 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Product>> _productFuture;
+  int? _selectedCategoryId;
+  String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _productFuture = _loadProducts();
+    _productFuture = _loadProducts(); // initial load
   }
 
-  Future<List<Product>> _loadProducts() async {
+  Future<List<Product>> _loadProducts([int? categoryId, String? search]) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
-    return ApiService.fetchProducts(token);
+    return ApiService.fetchProducts(token,
+        categoryId: categoryId, search: search ?? _searchQuery);
+  }
+
+  void _onCategorySelected(int? categoryId) {
+    setState(() {
+      _selectedCategoryId = categoryId;
+      _productFuture = _loadProducts(categoryId, _searchQuery);
+    });
+  }
+
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query;
+      _productFuture = _loadProducts(_selectedCategoryId, query);
+    });
   }
 
   @override
@@ -168,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSearchBar(colorScheme),
-            _buildCategoryFilter(),
+            SearchBarWidget(onChanged: _onSearchChanged),
+            _buildCategoryFilter(_onCategorySelected),
             _buildPromotionBanner(theme, colorScheme),
             const SizedBox(height: 20),
             _buildProductGrid(context),
@@ -179,30 +203,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildSearchBar(ColorScheme colorScheme) {
+  Widget _buildCategoryFilter(Function(int?) onCategorySelected) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 16),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Search",
-          filled: true,
-          fillColor: colorScheme.surfaceContainerHighest,
-          prefixIcon: const Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryFilter() {
-    return const Padding(
-      padding: EdgeInsets.only(bottom: 16),
-      child: CategoryFilter(),
+      padding: const EdgeInsets.only(bottom: 16),
+      child: CategoryFilter(onCategorySelected: onCategorySelected),
     );
   }
 

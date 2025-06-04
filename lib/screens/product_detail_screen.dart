@@ -1,5 +1,132 @@
+// import 'package:flutter/material.dart';
+// // NOTE before loading products from the api this was used to load demo product data
+// // import 'package:luxnewyork_flutter_app/models/product_data.dart';
+// import 'package:luxnewyork_flutter_app/models/product.dart';
+
+// class ProductDetailScreen extends StatelessWidget {
+//   final Product product;
+
+//   const ProductDetailScreen({super.key, required this.product});
+
+//   // Show a Snackbar message
+//   void _showSnackbar(BuildContext context, String message) {
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(
+//         content: Text(message),
+//         duration: const Duration(seconds: 2),
+//       ),
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+//     final colorScheme = theme.colorScheme;
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: colorScheme.surface,
+//         elevation: 0,
+//         title: Text(
+//           product.name,
+//           style: theme.textTheme.bodyMedium,
+//         ),
+//       ),
+//       body: SingleChildScrollView(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             _buildProductImage(),
+//             _buildProductInfo(theme, colorScheme),
+//             _buildProductDescription(theme),
+//             _buildActionButtons(context, colorScheme),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+
+//   // Product Image Widget
+//   Widget _buildProductImage() {
+//     return ClipRRect(
+//       borderRadius: BorderRadius.circular(10),
+//       child: Image.asset(
+//         product.imagePath,
+//         fit: BoxFit.cover,
+//         width: double.infinity,
+//         height: 300,
+//       ),
+//     );
+//   }
+
+//   // Product Information
+//   Widget _buildProductInfo(ThemeData theme, ColorScheme colorScheme) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 16.0),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(product.name, style: theme.textTheme.headlineLarge),
+//           const SizedBox(height: 8),
+//           Text(product.category,
+//               style: theme.textTheme.bodyMedium
+//                   ?.copyWith(color: colorScheme.onSurfaceVariant)),
+//           const SizedBox(height: 16),
+//           Text(product.price,
+//               style: theme.textTheme.headlineMedium
+//                   ?.copyWith(color: colorScheme.primary)),
+//         ],
+//       ),
+//     );
+//   }
+
+//   // Product Description
+//   Widget _buildProductDescription(ThemeData theme) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text('Product Description', style: theme.textTheme.bodyLarge),
+//         const SizedBox(height: 8),
+//         Text(product.description, style: theme.textTheme.bodyMedium),
+//         const SizedBox(height: 30),
+//       ],
+//     );
+//   }
+
+//   // Action Buttons
+//   Widget _buildActionButtons(BuildContext context, ColorScheme colorScheme) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         ElevatedButton.icon(
+//           onPressed: () {
+//             // Show message
+//             _showSnackbar(context, '${product.name} added to cart');
+//             // TODO - Logic for add to cart
+//           },
+//           icon: const Icon(Icons.shopping_cart),
+//           label: const Text("Add to Cart"),
+//           style: ElevatedButton.styleFrom(
+//             foregroundColor: colorScheme.onPrimary,
+//             backgroundColor: colorScheme.primary,
+//           ),
+//         ),
+//         IconButton(
+//           onPressed: () {
+//             // Show message
+//             _showSnackbar(context, '${product.name} added to wishlist');
+//             // TODO - Logic for add to wishlist
+//           },
+//           icon: const Icon(Icons.favorite_border),
+//           color: colorScheme.primary,
+//         ),
+//       ],
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
-import 'package:luxnewyork_flutter_app/models/product_data.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -7,13 +134,9 @@ class ProductDetailScreen extends StatelessWidget {
 
   const ProductDetailScreen({super.key, required this.product});
 
-  // Show a Snackbar message
   void _showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 2),
-      ),
+      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
     );
   }
 
@@ -26,10 +149,7 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colorScheme.surface,
         elevation: 0,
-        title: Text(
-          product.name,
-          style: theme.textTheme.bodyMedium,
-        ),
+        title: Text(product.name, style: theme.textTheme.bodyMedium),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -46,20 +166,46 @@ class ProductDetailScreen extends StatelessWidget {
     );
   }
 
-  // Product Image Widget
   Widget _buildProductImage() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: Image.asset(
-        product.imagePath,
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: 300,
-      ),
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(
+            product.imagePath,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: 300,
+            errorBuilder: (_, __, ___) =>
+                const Icon(Icons.broken_image, size: 100),
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return SizedBox(
+                height: 300,
+                child: const Center(child: CircularProgressIndicator()),
+              );
+            },
+          ),
+        ),
+        if (product.stock == 0)
+          Container(
+            margin: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.red.shade600,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const Text(
+              'OUT OF STOCK',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+      ],
     );
   }
 
-  // Product Information
   Widget _buildProductInfo(ThemeData theme, ColorScheme colorScheme) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -72,20 +218,24 @@ class ProductDetailScreen extends StatelessWidget {
               style: theme.textTheme.bodyMedium
                   ?.copyWith(color: colorScheme.onSurfaceVariant)),
           const SizedBox(height: 16),
-          Text(product.price,
+          Text('LKR ${product.price}',
               style: theme.textTheme.headlineMedium
                   ?.copyWith(color: colorScheme.primary)),
+          const SizedBox(height: 8),
+          Text(
+            "Stock: ${product.stock}",
+            style: theme.textTheme.bodySmall,
+          ),
         ],
       ),
     );
   }
 
-  // Product Description
   Widget _buildProductDescription(ThemeData theme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Product Description', style: theme.textTheme.bodyLarge),
+        Text('Product Description', style: theme.textTheme.titleMedium),
         const SizedBox(height: 8),
         Text(product.description, style: theme.textTheme.bodyMedium),
         const SizedBox(height: 30),
@@ -93,29 +243,31 @@ class ProductDetailScreen extends StatelessWidget {
     );
   }
 
-  // Action Buttons
   Widget _buildActionButtons(BuildContext context, ColorScheme colorScheme) {
+    final isOutOfStock = product.stock == 0;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton.icon(
-          onPressed: () {
-            // Show message
-            _showSnackbar(context, '${product.name} added to cart');
-            // TODO - Logic for add to cart
-          },
+          onPressed: isOutOfStock
+              ? null
+              : () {
+                  _showSnackbar(context, '${product.name} added to cart');
+                  // TODO: Add to cart API logic here
+                },
           icon: const Icon(Icons.shopping_cart),
-          label: const Text("Add to Cart"),
+          label: Text(isOutOfStock ? "Out of Stock" : "Add to Cart"),
           style: ElevatedButton.styleFrom(
             foregroundColor: colorScheme.onPrimary,
-            backgroundColor: colorScheme.primary,
+            backgroundColor: isOutOfStock ? Colors.grey : colorScheme.primary,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
         IconButton(
           onPressed: () {
-            // Show message
             _showSnackbar(context, '${product.name} added to wishlist');
-            // TODO - Logic for add to wishlist
+            // TODO: Add to wishlist API logic here
           },
           icon: const Icon(Icons.favorite_border),
           color: colorScheme.primary,
