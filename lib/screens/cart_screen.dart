@@ -13,6 +13,14 @@ class _CartScreenState extends State<CartScreen> {
   bool _isLoading = true;
   String? _error;
 
+  Future<void> _refreshCart() async {
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+    await _loadCart();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,11 +47,35 @@ class _CartScreenState extends State<CartScreen> {
 
     Widget body;
     if (_isLoading) {
-      body = const Center(child: CircularProgressIndicator());
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: const [
+          SizedBox(
+            height: 300,
+            child: Center(child: CircularProgressIndicator()),
+          )
+        ],
+      );
     } else if (_error != null) {
-      body = Center(child: Text(_error!));
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          SizedBox(
+            height: 300,
+            child: Center(child: Text(_error!)),
+          )
+        ],
+      );
     } else if (items.isEmpty) {
-      body = const Center(child: Text('Your cart is empty.'));
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: const [
+          SizedBox(
+            height: 300,
+            child: Center(child: Text('Your cart is empty.')),
+          )
+        ],
+      );
     } else {
       body = ListView.builder(
         padding: const EdgeInsets.all(16),
@@ -78,7 +110,10 @@ class _CartScreenState extends State<CartScreen> {
         title: const Text('My Cart'),
         backgroundColor: colorScheme.surface,
       ),
-      body: body,
+      body: RefreshIndicator(
+        onRefresh: _refreshCart,
+        child: body,
+      ),
       bottomNavigationBar: !_isLoading && items.isNotEmpty
           ? Padding(
               padding: const EdgeInsets.all(16.0),

@@ -154,6 +154,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int? _selectedCategoryId;
   String _searchQuery = '';
 
+  Future<void> _refreshProducts() async {
+    setState(() {
+      _productFuture = _loadProducts(_selectedCategoryId, _searchQuery);
+    });
+    await _productFuture;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -188,16 +195,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SearchBarWidget(onChanged: _onSearchChanged),
-            _buildCategoryFilter(_onCategorySelected),
-            _buildPromotionBanner(theme, colorScheme),
-            const SizedBox(height: 20),
-            _buildProductGrid(context),
-          ],
+      child: RefreshIndicator(
+        onRefresh: _refreshProducts,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SearchBarWidget(onChanged: _onSearchChanged),
+              _buildCategoryFilter(_onCategorySelected),
+              _buildPromotionBanner(theme, colorScheme),
+              const SizedBox(height: 20),
+              _buildProductGrid(context),
+            ],
+          ),
         ),
       ),
     );
