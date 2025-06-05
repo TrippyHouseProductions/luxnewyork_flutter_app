@@ -101,6 +101,8 @@ import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -122,6 +124,15 @@ class _MainScreenState extends State<MainScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Load cart items after the first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CartProvider>(context, listen: false).loadCart();
     });
   }
 
@@ -168,14 +179,43 @@ class _MainScreenState extends State<MainScreen> {
           unselectedItemColor: colorScheme.onSurfaceVariant,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          items: [
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: 'Home'),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: 'Wishlist'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: "Wishlist"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag), label: "Cart"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.receipt_long), label: "My Orders"),
+              icon: Stack(
+                children: [
+                  const Icon(Icons.shopping_bag),
+                  if (context.watch<CartProvider>().itemCount > 0)
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        constraints:
+                            const BoxConstraints(minWidth: 16, minHeight: 16),
+                        child: Text(
+                          '${context.watch<CartProvider>().itemCount}',
+                          style: TextStyle(
+                            color: colorScheme.onPrimary,
+                            fontSize: 10,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              label: 'Cart',
+            ),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.receipt_long), label: 'My Orders'),
           ],
         ),
       ),
