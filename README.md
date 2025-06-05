@@ -16,6 +16,16 @@
 ✅ **Responsive Design**
 ✅ **Reusable Component Design**
 
+## **Features (SEMESTER 2)**
+
+✅ **data fetching via API**
+✅ **State Management with Provider**
+✅ **Sanctum authenticated user authorization**
+✅ **Stay logged in once logged in until you logout**
+✅ **Shopping Cart functionality**
+✅ **Wishlist functionalty**
+✅ **Category filtering**
+✅ **Search products funnctionality**
 ---
 
 ## **Getting Started**
