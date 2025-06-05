@@ -14,7 +14,8 @@ class Product {
     required this.category,
     required this.price,
     required this.imagePath,
-    required this.stock, // ✅ Include in constructor
+    required this.stock,
+    required sku, // ✅ Include in constructor
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -22,10 +23,13 @@ class Product {
       id: json['id'],
       name: json['name'],
       description: json['description'],
-      category: json['category']['name'],
-      price: json['price'].toString(),
+      price: json['price'].toString(), // or convert if needed
       imagePath: json['image'],
-      stock: json['stock'] ?? 0,
+      category: '', // if needed, you can add a separate API call for category
+      stock: json['stock'],
+      sku: json['sku'],
     );
   }
+
+  toJson() {}
 }

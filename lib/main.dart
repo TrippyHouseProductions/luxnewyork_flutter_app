@@ -21,12 +21,49 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+// import 'screens/splash_screen.dart';
+// import 'theme/theme.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: lightTheme,
+//       darkTheme: darkTheme,
+//       themeMode: ThemeMode.system,
+//       home: const SplashScreen(), // ✅ SplashScreen will decide where to go
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'screens/splash_screen.dart';
 import 'theme/theme.dart';
 
+// Providers
+import 'providers/cart_provider.dart';
+import 'providers/wishlist_provider.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => WishlistProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,7 +76,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: const SplashScreen(), // ✅ SplashScreen will decide where to go
+      home: const SplashScreen(), // The splash screen can decide login vs home
     );
   }
 }

@@ -91,3 +91,51 @@
 //     );
 //   }
 // }
+
+// NOTE Added WishlistScreen to display products added to the wishlist using provider
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
+import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
+
+class WishlistScreen extends StatelessWidget {
+  const WishlistScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final wishlist = context.watch<WishlistProvider>().wishlist;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final orientation = MediaQuery.of(context).orientation;
+    final crossAxisCount = orientation == Orientation.portrait ? 2 : 4;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Wishlist"),
+        backgroundColor: colorScheme.surface,
+      ),
+      body: wishlist.isEmpty
+          ? const Center(
+              child: Text(
+                "Your wishlist is empty.",
+                style: TextStyle(fontSize: 16),
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.builder(
+                itemCount: wishlist.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.6,
+                ),
+                itemBuilder: (context, index) {
+                  return ProductCard(product: wishlist[index]);
+                },
+              ),
+            ),
+    );
+  }
+}
