@@ -109,6 +109,14 @@ class _WishlistScreenState extends State<WishlistScreen> {
   bool _isLoading = true;
   String? _error;
 
+  Future<void> _refreshWishlist() async {
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+    await _loadWishlist();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -137,15 +145,39 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
     Widget body;
     if (_isLoading) {
-      body = const Center(child: CircularProgressIndicator());
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: const [
+          SizedBox(
+            height: 300,
+            child: Center(child: CircularProgressIndicator()),
+          )
+        ],
+      );
     } else if (_error != null) {
-      body = Center(child: Text(_error!));
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          SizedBox(
+            height: 300,
+            child: Center(child: Text(_error!)),
+          )
+        ],
+      );
     } else if (wishlist.isEmpty) {
-      body = const Center(
-        child: Text(
-          "Your wishlist is empty.",
-          style: TextStyle(fontSize: 16),
-        ),
+      body = ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: const [
+          SizedBox(
+            height: 300,
+            child: Center(
+              child: Text(
+                "Your wishlist is empty.",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          )
+        ],
       );
     } else {
       body = Padding(
@@ -170,7 +202,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
         title: const Text("My Wishlist"),
         backgroundColor: colorScheme.surface,
       ),
-      body: body,
+      body: RefreshIndicator(
+        onRefresh: _refreshWishlist,
+        child: body,
+      ),
     );
   }
 }
