@@ -53,4 +53,13 @@ class CartProvider extends ChangeNotifier {
   }
 
   int get itemCount => _items.length;
+
+  /// Compute total price of items in the cart
+  double get totalPrice {
+    double sum = 0;
+    for (final item in _items) {
+      sum += double.tryParse(item.price) ?? 0;
+    }
+    return sum;
+  }
 }

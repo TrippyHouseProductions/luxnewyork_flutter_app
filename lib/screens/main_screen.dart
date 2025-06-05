@@ -117,8 +117,8 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const WishlistScreen(),
-    // const CartScreen(),
-    // const MyOrdersScreen(),
+    const CartScreen(),
+    const MyOrdersScreen(),
   ];
 
   void _onItemTapped(int index) {
