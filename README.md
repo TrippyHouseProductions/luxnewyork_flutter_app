@@ -4,7 +4,7 @@
 
 ---
 
-## **Features**
+## **Features (SEMESTER 1)**
 
 ✅ **Modern UI**
 ✅ **Dark Mode Support**
