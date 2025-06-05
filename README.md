@@ -16,6 +16,8 @@
 ✅ **Responsive Design**
 ✅ **Reusable Component Design**
 
+---
+
 ## **Features (SEMESTER 2)**
 
 ✅ **data fetching via API**
@@ -26,6 +28,7 @@
 ✅ **Wishlist functionalty**
 ✅ **Category filtering**
 ✅ **Search products funnctionality**
+
 ---
 
 ## **Getting Started**
