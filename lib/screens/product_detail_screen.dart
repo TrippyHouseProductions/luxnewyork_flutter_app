@@ -127,7 +127,9 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
+import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -244,7 +246,9 @@ class ProductDetailScreen extends StatelessWidget {
   }
 
   Widget _buildActionButtons(BuildContext context, ColorScheme colorScheme) {
+    final cart = context.watch<CartProvider>();
     final isOutOfStock = product.stock == 0;
+    final inCart = cart.isInCart(product.id);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,14 +257,23 @@ class ProductDetailScreen extends StatelessWidget {
           onPressed: isOutOfStock
               ? null
               : () {
-                  _showSnackbar(context, '${product.name} added to cart');
-                  // TODO: Add to cart API logic here
+                  if (inCart) {
+                    _showSnackbar(context, 'Product is already in the cart');
+                  } else {
+                    cart.addItem(product);
+                    _showSnackbar(context, '${product.name} added to cart');
+                  }
                 },
           icon: const Icon(Icons.shopping_cart),
-          label: Text(isOutOfStock ? "Out of Stock" : "Add to Cart"),
+          label: Text(isOutOfStock
+              ? 'Out of Stock'
+              : inCart
+                  ? 'Added to Cart'
+                  : 'Add to Cart'),
           style: ElevatedButton.styleFrom(
             foregroundColor: colorScheme.onPrimary,
-            backgroundColor: isOutOfStock ? Colors.grey : colorScheme.primary,
+            backgroundColor:
+                isOutOfStock ? Colors.grey : colorScheme.primary,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
