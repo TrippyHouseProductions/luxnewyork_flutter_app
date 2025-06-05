@@ -24,6 +24,7 @@
 ✅ **State Management with Provider**
 ✅ **Sanctum authenticated user authorization**
 ✅ **Stay logged in once logged in until you logout**
+✅ **Data Caching using Shared Preference package**
 ✅ **Shopping Cart functionality**
 ✅ **Wishlist functionalty**
 ✅ **Category filtering**
