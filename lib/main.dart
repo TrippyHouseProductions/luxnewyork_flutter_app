@@ -54,6 +54,8 @@ import 'theme/theme.dart';
 import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'providers/theme_provider.dart';
+import 'providers/connectivity_provider.dart';
+import 'widgets/no_internet_overlay.dart';
 
 void main() {
   runApp(
@@ -62,6 +64,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
       ],
       child: const MyApp(),
     ),
@@ -79,7 +82,9 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeProvider.themeMode,
-      home: const SplashScreen(), // The splash screen can decide login vs home
+      home: const SplashScreen(),
+      builder: (context, child) =>
+          NoInternetOverlay(child: child ?? const SizedBox()),
     );
   }
 }
