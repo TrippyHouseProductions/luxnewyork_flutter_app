@@ -20,15 +20,23 @@ class Product {
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    String extractString(dynamic value) {
+      if (value is String) return value;
+      if (value is Map && value.containsKey('en')) {
+        return value['en'].toString();
+      }
+      return value.toString(); // fallback
+    }
+
     return Product(
       id: json['id'],
-      name: json['name'],
-      description: json['description'],
+      name: extractString(json['name']),
+      description: extractString(json['description']),
       price: json['price'].toString(),
-      imagePath: json['image'],
-      category: json['category'] ?? '',
+      imagePath: extractString(json['image']),
+      category: extractString(json['category']),
       stock: json['stock'],
-      sku: json['sku'] ?? '',
+      sku: extractString(json['sku']),
     );
   }
 

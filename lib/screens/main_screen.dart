@@ -95,6 +95,161 @@
 //   }
 // }
 
+// import 'dart:async';
+
+// import 'package:flutter/material.dart';
+// import 'package:luxnewyork_flutter_app/screens/profile_screen.dart';
+// import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
+// import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
+// import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
+// import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
+// import 'package:provider/provider.dart';
+// import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
+
+// class MainScreen extends StatefulWidget {
+//   const MainScreen({super.key});
+
+//   @override
+//   _MainScreenState createState() => _MainScreenState();
+// }
+
+// class _MainScreenState extends State<MainScreen> {
+//   int _selectedIndex = 0;
+//   StreamSubscription<ConnectivityResult>? _connectivitySub;
+//   bool _isOffline = false;
+
+//   final List<Widget> _screens = [
+//     const HomeScreen(),
+//     const WishlistScreen(),
+//     const CartScreen(),
+//     const MyOrdersScreen(),
+//   ];
+
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Load cart items after the first frame
+//     WidgetsBinding.instance.addPostFrameCallback((_) {
+//       Provider.of<CartProvider>(context, listen: false).loadCart();
+//     });
+
+//     _connectivitySub = Connectivity()
+//         .onConnectivityChanged
+//         .listen((ConnectivityResult result) {
+//       final offline = result == ConnectivityResult.none;
+//       if (offline != _isOffline) {
+//         _isOffline = offline;
+//         final message = offline ? 'You are offline' : 'Back online';
+//         final color = offline ? Colors.red : Colors.green;
+//         ScaffoldMessenger.of(context).showSnackBar(
+//           SnackBar(content: Text(message), backgroundColor: color),
+//         );
+//       }
+//     });
+//   }
+
+//   @override
+//   void dispose() {
+//     _connectivitySub?.cancel();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+//     final colorScheme = theme.colorScheme;
+
+//     return WillPopScope(
+//       onWillPop: () async {
+//         if (_selectedIndex != 0) {
+//           setState(() {
+//             _selectedIndex = 0;
+//           });
+//           return false;
+//         }
+//         return true;
+//       },
+//       child: Scaffold(
+//         appBar: AppBar(
+//           elevation: 0,
+//           title: Text("LUXNEWYORK", style: theme.textTheme.bodyMedium),
+//           actions: [
+//             IconButton(
+//               icon: const Icon(Icons.account_circle),
+//               onPressed: () {
+//                 Navigator.push(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) => const ProfileScreen(),
+//                   ),
+//                 );
+//               },
+//             ),
+//           ],
+//         ),
+//         body: IndexedStack(
+//           index: _selectedIndex,
+//           children: _screens,
+//         ),
+//         bottomNavigationBar: BottomNavigationBar(
+//           backgroundColor: colorScheme.surface,
+//           selectedItemColor: colorScheme.primary,
+//           unselectedItemColor: colorScheme.onSurfaceVariant,
+//           currentIndex: _selectedIndex,
+//           onTap: _onItemTapped,
+//           items: [
+//             const BottomNavigationBarItem(
+//                 icon: Icon(Icons.home), label: 'Home'),
+//             const BottomNavigationBarItem(
+//                 icon: Icon(Icons.favorite), label: 'Wishlist'),
+//             BottomNavigationBarItem(
+//               icon: Stack(
+//                 children: [
+//                   const Icon(Icons.shopping_bag),
+//                   if (context.watch<CartProvider>().itemCount > 0)
+//                     Positioned(
+//                       right: 0,
+//                       top: 0,
+//                       child: Container(
+//                         padding: const EdgeInsets.all(2),
+//                         decoration: BoxDecoration(
+//                           color: colorScheme.primary,
+//                           shape: BoxShape.circle,
+//                         ),
+//                         constraints:
+//                             const BoxConstraints(minWidth: 16, minHeight: 16),
+//                         child: Text(
+//                           '${context.watch<CartProvider>().itemCount}',
+//                           style: TextStyle(
+//                             color: colorScheme.onPrimary,
+//                             fontSize: 10,
+//                           ),
+//                           textAlign: TextAlign.center,
+//                         ),
+//                       ),
+//                     ),
+//                 ],
+//               ),
+//               label: 'Cart',
+//             ),
+//             const BottomNavigationBarItem(
+//                 icon: Icon(Icons.receipt_long), label: 'My Orders'),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/screens/profile_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
@@ -114,7 +269,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  StreamSubscription<ConnectivityResult>? _connectivitySub;
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySub;
   bool _isOffline = false;
 
   final List<Widget> _screens = [
@@ -133,21 +288,33 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
     // Load cart items after the first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<CartProvider>(context, listen: false).loadCart();
     });
 
+    // Listen to connectivity changes (for connectivity_plus v6+)
     _connectivitySub = Connectivity()
         .onConnectivityChanged
-        .listen((ConnectivityResult result) {
-      final offline = result == ConnectivityResult.none;
+        .listen((List<ConnectivityResult> results) {
+      final offline =
+          results.isEmpty || results.first == ConnectivityResult.none;
+
       if (offline != _isOffline) {
-        _isOffline = offline;
+        setState(() {
+          _isOffline = offline;
+        });
+
         final message = offline ? 'You are offline' : 'Back online';
         final color = offline ? Colors.red : Colors.green;
+
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message), backgroundColor: color),
+          SnackBar(
+            content: Text(message),
+            backgroundColor: color,
+            duration: const Duration(seconds: 3),
+          ),
         );
       }
     });
@@ -155,7 +322,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    _connectivitySub?.cancel();
+    _connectivitySub.cancel();
     super.dispose();
   }
 
