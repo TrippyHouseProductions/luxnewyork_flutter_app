@@ -53,6 +53,7 @@ import 'theme/theme.dart';
 // Providers
 import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
+import 'providers/theme_provider.dart';
 
 void main() {
   runApp(
@@ -60,6 +61,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
     ),
@@ -71,11 +73,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: themeProvider.themeMode,
       home: const SplashScreen(), // The splash screen can decide login vs home
     );
   }

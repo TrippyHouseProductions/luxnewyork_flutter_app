@@ -133,6 +133,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/screens/login_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/preferences_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/about_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -250,9 +252,22 @@ class _ProfileMenu extends StatelessWidget {
 
     return Column(
       children: [
-        _buildMenuItem(Icons.shopping_bag, "My Orders", textTheme, () {}),
-        _buildMenuItem(Icons.language, "Preferences", textTheme, () {}),
-        _buildMenuItem(Icons.credit_card, "Payment Methods", textTheme, () {}),
+        _buildMenuItem(Icons.language, "Preferences", textTheme, () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const PreferencesScreen(),
+            ),
+          );
+        }),
+        _buildMenuItem(Icons.info, "About", textTheme, () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AboutScreen(),
+            ),
+          );
+        }),
         _buildMenuItem(Icons.settings, "Account Settings", textTheme, () {}),
       ],
     );
