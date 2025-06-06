@@ -62,10 +62,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-// <<<<<<< codex/fix-image-loading-socketexception-error
-// =======
-//         // ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
-// >>>>>>> main
       ],
       child: const MyApp(),
     ),
@@ -84,10 +80,6 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: themeProvider.themeMode,
       home: const SplashScreen(), // The splash screen can decide login vs home
-//       home: const SplashScreen(),
-//       // builder: (context, child) =>
-//       //     NoInternetOverlay(child: child ?? const SizedBox()),
-// >>>>>>> main
     );
   }
 }
