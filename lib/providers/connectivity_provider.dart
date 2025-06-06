@@ -1,5 +1,3 @@
-// ignore_for_file: unrelated_type_equality_checks
-
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
@@ -27,6 +25,7 @@ class ConnectivityProvider extends ChangeNotifier {
 
   Future<bool> _checkConnection() async {
     final result = await _connectivity.checkConnectivity();
+
     return result != ConnectivityResult.none;
   }
 
