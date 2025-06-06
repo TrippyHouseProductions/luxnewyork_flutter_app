@@ -54,8 +54,6 @@ import 'theme/theme.dart';
 import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'providers/theme_provider.dart';
-import 'providers/connectivity_provider.dart';
-import 'widgets/no_internet_overlay.dart';
 
 void main() {
   runApp(
