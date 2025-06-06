@@ -64,7 +64,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
+        // ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
       ],
       child: const MyApp(),
     ),
@@ -83,8 +83,8 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: themeProvider.themeMode,
       home: const SplashScreen(),
-      builder: (context, child) =>
-          NoInternetOverlay(child: child ?? const SizedBox()),
+      // builder: (context, child) =>
+      //     NoInternetOverlay(child: child ?? const SizedBox()),
     );
   }
 }
