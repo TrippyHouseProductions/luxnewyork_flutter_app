@@ -22,7 +22,12 @@ class NoInternetOverlay extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.wifi_off,
-                          size: 80, color: Theme.of(context).colorScheme.onBackground),
+// <<<<<<< tti6jg-codex/add-no-internet-message-with-retry-button
+//                           size: 80, color: Theme.of(context).colorScheme.onBackground),
+// =======
+//                           size: 80,
+//                           color: Theme.of(context).colorScheme.onSurface),
+// >>>>>>> main
                       const SizedBox(height: 16),
                       Text('No Internet Connection',
                           style: Theme.of(context).textTheme.bodyLarge),
