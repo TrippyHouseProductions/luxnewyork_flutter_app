@@ -63,9 +63,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/category.dart';
 import '../services/api_service.dart';
+import '../services/storage_service.dart';
 
 class CategoryFilter extends StatefulWidget {
   final Function(int? categoryId)? onCategorySelected;
@@ -89,11 +91,29 @@ class _CategoryFilterState extends State<CategoryFilter> {
   Future<void> _loadCategories() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
-    final loaded = await ApiService.fetchCategories(token); // List<Category>
+    final connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      final cached = await StorageService.loadCategories();
+      setState(() {
+        _categories = [Category(id: 0, name: 'All'), ...cached];
+      });
+      return;
+    }
 
-    setState(() {
-      _categories = [Category(id: 0, name: 'All'), ...loaded]; // List<Category>
-    });
+    try {
+      final loaded = await ApiService.fetchCategories(token);
+      await StorageService.saveCategories(loaded);
+      setState(() {
+        _categories = [Category(id: 0, name: 'All'), ...loaded];
+      });
+    } catch (_) {
+      final cached = await StorageService.loadCategories();
+      if (cached.isNotEmpty) {
+        setState(() {
+          _categories = [Category(id: 0, name: 'All'), ...cached];
+        });
+      }
+    }
   }
 
   @override
