@@ -103,6 +103,7 @@ import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -113,6 +114,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  StreamSubscription<ConnectivityResult>? _connectivitySub;
+  bool _isOffline = false;
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -134,6 +137,26 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<CartProvider>(context, listen: false).loadCart();
     });
+
+    _connectivitySub = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      final offline = result == ConnectivityResult.none;
+      if (offline != _isOffline) {
+        _isOffline = offline;
+        final message = offline ? 'You are offline' : 'Back online';
+        final color = offline ? Colors.red : Colors.green;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message), backgroundColor: color),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _connectivitySub?.cancel();
+    super.dispose();
   }
 
   @override

@@ -130,6 +130,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 // ANCHOR widgets
 import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
@@ -141,6 +142,7 @@ import 'package:luxnewyork_flutter_app/models/product.dart';
 
 // ANCHOR services
 import 'package:luxnewyork_flutter_app/services/api_service.dart';
+import 'package:luxnewyork_flutter_app/services/storage_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -170,8 +172,24 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<List<Product>> _loadProducts([int? categoryId, String? search]) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
-    return ApiService.fetchProducts(token,
-        categoryId: categoryId, search: search ?? _searchQuery);
+
+    final connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      // Device offline - load cached products
+      return StorageService.loadProducts();
+    }
+
+    try {
+      final products = await ApiService.fetchProducts(token,
+          categoryId: categoryId, search: search ?? _searchQuery);
+      await StorageService.saveProducts(products);
+      return products;
+    } catch (_) {
+      // If API call fails, fall back to cached products if available
+      final cached = await StorageService.loadProducts();
+      if (cached.isNotEmpty) return cached;
+      rethrow;
+    }
   }
 
   void _onCategorySelected(int? categoryId) {
