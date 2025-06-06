@@ -22,8 +22,9 @@ class Product {
   factory Product.fromJson(Map<String, dynamic> json) {
     String extractString(dynamic value) {
       if (value is String) return value;
-      if (value is Map && value.containsKey('en'))
+      if (value is Map && value.containsKey('en')) {
         return value['en'].toString();
+      }
       return value.toString();
     }
 
