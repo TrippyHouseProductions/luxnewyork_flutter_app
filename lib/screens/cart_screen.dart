@@ -40,13 +40,17 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
     _loadCart();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ConnectivityProvider>().addListener(_handleConnectivityChange);
+      context
+          .read<ConnectivityProvider>()
+          .addListener(_handleConnectivityChange);
     });
   }
 
   @override
   void dispose() {
-    context.read<ConnectivityProvider>().removeListener(_handleConnectivityChange);
+    context
+        .read<ConnectivityProvider>()
+        .removeListener(_handleConnectivityChange);
     super.dispose();
   }
 

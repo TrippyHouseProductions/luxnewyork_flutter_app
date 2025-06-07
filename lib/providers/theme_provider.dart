@@ -10,6 +10,8 @@ class ThemeProvider extends ChangeNotifier {
     _loadThemeMode();
   }
 
+  // NOTE Loads the theme mode from shared preferences.
+  // NOTE If no value is found, defaults to system mode.
   Future<void> _loadThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
     final mode = prefs.getString('theme_mode');
@@ -26,6 +28,8 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // NOTE Sets the theme mode and saves it to shared preferences.
+  // NOTE Accepts ThemeMode.light, ThemeMode.dark, or ThemeMode.system.
   Future<void> setThemeMode(ThemeMode mode) async {
     _themeMode = mode;
     final prefs = await SharedPreferences.getInstance();

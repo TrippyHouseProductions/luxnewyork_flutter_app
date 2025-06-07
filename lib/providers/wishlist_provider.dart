@@ -10,7 +10,7 @@ class WishlistProvider extends ChangeNotifier {
 
   List<Product> get wishlist => _wishlist;
 
-  // Fetch wishlist from API based on logged-in user
+  // Fetch wishlist from API based on logged-in user (GET)
   Future<void> loadWishlist() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -45,7 +45,7 @@ class WishlistProvider extends ChangeNotifier {
     }
   }
 
-  /// Toggle wishlist status of [product] and update backend.
+  // NOTE Toggle wishlist status of [product] and update backend (POST/DELETE)
   Future<void> toggleWishlist(Product product) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -90,6 +90,7 @@ class WishlistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // NOTE Check if a product is in the wishlist
   bool isInWishlist(int productId) {
     return _wishlist.any((product) => product.id == productId);
   }
