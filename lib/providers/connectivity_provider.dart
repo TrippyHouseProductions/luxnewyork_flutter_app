@@ -11,16 +11,15 @@ class ConnectivityProvider extends ChangeNotifier {
     _subscription = Connectivity()
         .onConnectivityChanged
         .listen((List<ConnectivityResult> results) {
-      final offline =
-          results.isEmpty || results.first == ConnectivityResult.none;
+      final offline = results.contains(ConnectivityResult.none);
       if (offline != _isOffline) {
         _isOffline = offline;
         notifyListeners();
       }
     });
 
-    Connectivity().checkConnectivity().then((result) {
-      final offline = result == ConnectivityResult.none;
+    Connectivity().checkConnectivity().then((results) {
+      final offline = results.contains(ConnectivityResult.none);
       if (offline != _isOffline) {
         _isOffline = offline;
         notifyListeners();
