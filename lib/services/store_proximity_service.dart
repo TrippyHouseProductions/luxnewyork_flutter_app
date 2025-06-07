@@ -37,6 +37,7 @@ class StoreProximityService {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
+
   }
 
   Future<void> checkNearbyStores() async {
