@@ -1,30 +1,12 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-
-class AboutItem {
-  final String title;
-  final String description;
-
-  AboutItem({required this.title, required this.description});
-
-  factory AboutItem.fromJson(Map<String, dynamic> json) {
-    return AboutItem(
-      title: json['title'] as String,
-      description: json['description'] as String,
-    );
-  }
-}
+import '../models/about_item.dart';
+import '../services/external_json_service.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
   Future<List<AboutItem>> _loadItems() async {
-    final data = await rootBundle.loadString('assets/data/about_items.json');
-    final List<dynamic> jsonList = jsonDecode(data) as List<dynamic>;
-    return jsonList
-        .map((item) => AboutItem.fromJson(item as Map<String, dynamic>))
-        .toList();
+    return ExternalJsonService.fetchAboutItems();
   }
 
   @override
