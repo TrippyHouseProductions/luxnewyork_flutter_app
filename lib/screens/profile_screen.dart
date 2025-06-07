@@ -154,19 +154,28 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
-    final imageProvider = _profileImage != null
-        ? FileImage(_profileImage!) as ImageProvider
-        : const AssetImage('assets/images/user.webp');
+    final avatar = _profileImage != null
+        ? CircleAvatar(
+            radius: 50,
+            backgroundColor: colorScheme.primaryContainer,
+            backgroundImage: FileImage(_profileImage!),
+          )
+        : CircleAvatar(
+            radius: 50,
+            backgroundColor: colorScheme.primaryContainer,
+            child: Text(
+              _name != null && _name!.isNotEmpty
+                  ? _name![0].toUpperCase()
+                  : '?',
+              style: textTheme.headlineMedium,
+            ),
+          );
 
     return Column(
       children: [
         GestureDetector(
           onTap: _pickImage,
-          child: CircleAvatar(
-            radius: 50,
-            backgroundColor: colorScheme.primaryContainer,
-            backgroundImage: imageProvider,
-          ),
+          child: avatar,
         ),
         const SizedBox(height: 10),
         if (_name != null)
