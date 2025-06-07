@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
-import "../providers/location_provider.dart";
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -46,7 +45,6 @@ class _CartScreenState extends State<CartScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final location = context.watch<LocationProvider>();
     Widget body;
     if (_isLoading) {
       body = ListView(
@@ -96,9 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                 fit: BoxFit.cover,
               ),
               title: Text(product.name),
-              subtitle: Text(
-                  '${location.currency} '
-                  '${location.convertPrice(double.tryParse(product.price) ?? 0).toStringAsFixed(2)}'),
+              subtitle: Text(product.price),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () => cartProvider.removeItem(product.id),
@@ -122,8 +118,7 @@ class _CartScreenState extends State<CartScreen> {
           ? Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Total: ${location.currency} '
-                '${location.convertPrice(cartProvider.totalPrice).toStringAsFixed(2)}',
+                'Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
                 textAlign: TextAlign.end,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,

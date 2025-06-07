@@ -131,7 +131,6 @@ import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 
-import 'package:luxnewyork_flutter_app/providers/location_provider.dart';
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
@@ -221,15 +220,9 @@ class ProductDetailScreen extends StatelessWidget {
               style: theme.textTheme.bodyMedium
                   ?.copyWith(color: colorScheme.onSurfaceVariant)),
           const SizedBox(height: 16),
-          Builder(builder: (context) {
-            final location = context.watch<LocationProvider>();
-            final price = location
-                .convertPrice(double.tryParse(product.price) ?? 0)
-                .toStringAsFixed(2);
-            return Text('${location.currency} $price',
-                style: theme.textTheme.headlineMedium
-                    ?.copyWith(color: colorScheme.primary));
-          }),
+          Text('LKR ${product.price}',
+              style: theme.textTheme.headlineMedium
+                  ?.copyWith(color: colorScheme.primary)),
           const SizedBox(height: 8),
           Text(
             "Stock: ${product.stock}",
