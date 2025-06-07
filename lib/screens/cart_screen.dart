@@ -83,11 +83,16 @@ class _CartScreenState extends State<CartScreen> {
         itemBuilder: (_, __) => const ListTileSkeleton(),
       );
     } else if (_error != null) {
+      final emptyHeight = MediaQuery.of(context).size.height -
+          kToolbarHeight -
+          kBottomNavigationBarHeight -
+          MediaQuery.of(context).padding.top;
+
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
           SizedBox(
-            height: 300,
+            height: emptyHeight,
             child: ConnectionErrorWidget(
               message: _error!,
               onRetry: _refreshCart,
@@ -96,11 +101,16 @@ class _CartScreenState extends State<CartScreen> {
         ],
       );
     } else if (items.isEmpty) {
+      final emptyHeight = MediaQuery.of(context).size.height -
+          kToolbarHeight -
+          kBottomNavigationBarHeight -
+          MediaQuery.of(context).padding.top;
+
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
           SizedBox(
-            height: 300,
+            height: emptyHeight,
             child: EmptyStateWidget(
               message: 'Your cart is empty.',
               actionText: 'Shop Now',
