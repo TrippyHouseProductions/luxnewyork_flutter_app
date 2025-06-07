@@ -4,6 +4,7 @@ import '../providers/cart_provider.dart';
 import '../widgets/list_tile_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../widgets/skeleton.dart';
+import '../widgets/connection_error_widget.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -35,7 +36,7 @@ class _CartScreenState extends State<CartScreen> {
     try {
       await cart.loadCart();
     } catch (e) {
-      setState(() => _error = 'Failed to load cart');
+      setState(() => _error = 'Connection lost. Please try again.');
     } finally {
       setState(() => _isLoading = false);
     }
@@ -61,7 +62,10 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           SizedBox(
             height: 300,
-            child: Center(child: Text(_error!)),
+            child: ConnectionErrorWidget(
+              message: _error!,
+              onRetry: _refreshCart,
+            ),
           )
         ],
       );
