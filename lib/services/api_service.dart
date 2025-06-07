@@ -11,12 +11,13 @@ class ApiService {
     String token, {
     int? categoryId,
     String? search,
+    int page = 1,
+    int limit = 10,
   }) async {
-    String query = '';
-    if (categoryId != null) query += 'category_id=$categoryId';
+    String query = 'page=$page&limit=$limit';
+    if (categoryId != null) query += '&category_id=$categoryId';
     if (search != null && search.isNotEmpty) {
-      if (query.isNotEmpty) query += '&';
-      query += 'search=$search';
+      query += '&search=$search';
     }
 
     final uri =
