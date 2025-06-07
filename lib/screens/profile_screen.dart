@@ -131,7 +131,11 @@
 
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:luxnewyork_flutter_app/screens/login_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/preferences_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/about_screen.dart';
@@ -161,9 +165,14 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () async {
               Navigator.pop(context);
 
-              // NOTE Remove token from SharedPreferences
+              // NOTE Remove token and user data from SharedPreferences
               final prefs = await SharedPreferences.getInstance();
+              final email = prefs.getString('user_email');
               await prefs.remove('auth_token');
+              if (email != null) {
+                await prefs.remove('user_email');
+                await prefs.remove('profile_photo_' + email);
+              }
 
               // NOTE Navigate to login
               Navigator.pushReplacement(
@@ -217,8 +226,54 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class _UserProfileSection extends StatelessWidget {
+class _UserProfileSection extends StatefulWidget {
   const _UserProfileSection();
+
+  @override
+  State<_UserProfileSection> createState() => _UserProfileSectionState();
+}
+
+class _UserProfileSectionState extends State<_UserProfileSection> {
+  File? _profileImage;
+  String? _email;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('user_email');
+    String? imagePath;
+    if (email != null) {
+      imagePath = prefs.getString('profile_photo_' + email);
+    }
+    setState(() {
+      _email = email;
+      if (imagePath != null && File(imagePath).existsSync()) {
+        _profileImage = File(imagePath);
+      }
+    });
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.camera, maxWidth: 600);
+    if (picked == null) return;
+    final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('user_email');
+    if (email == null) return;
+    final dir = await getApplicationDocumentsDirectory();
+    final path = '${dir.path}/profile_photo_$email.png';
+    final file = File(path);
+    await picked.saveTo(file.path);
+    await prefs.setString('profile_photo_' + email, file.path);
+    setState(() {
+      _profileImage = file;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -226,18 +281,23 @@ class _UserProfileSection extends StatelessWidget {
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
+    final imageProvider = _profileImage != null
+        ? FileImage(_profileImage!) as ImageProvider
+        : const AssetImage('assets/images/user.webp');
+
     return Column(
       children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundColor: colorScheme.primaryContainer,
-          backgroundImage: const AssetImage("assets/images/user.webp"),
+        GestureDetector(
+          onTap: _pickImage,
+          child: CircleAvatar(
+            radius: 50,
+            backgroundColor: colorScheme.primaryContainer,
+            backgroundImage: imageProvider,
+          ),
         ),
         const SizedBox(height: 10),
-        Text("Hirusha Gunasena", style: textTheme.headlineSmall),
-        Text("hirushagunasena@gmail.com",
-            style: textTheme.bodyMedium
-                ?.copyWith(color: colorScheme.onSurfaceVariant)),
+        if (_email != null)
+          Text(_email!, style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
       ],
     );
   }

@@ -250,6 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Store token in shared preferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
+        await prefs.setString('user_email', _emailController.text.trim());
 
         // Navigate to main screen
         Navigator.pushReplacement(
