@@ -49,6 +49,7 @@ import 'package:provider/provider.dart';
 
 import 'screens/splash_screen.dart';
 import 'theme/theme.dart';
+import 'utils/snackbar_service.dart';
 
 // Providers
 import 'providers/cart_provider.dart';
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeProvider.themeMode,
+      scaffoldMessengerKey: rootScaffoldMessengerKey,
       home: const SplashScreen(), // The splash screen can decide login vs home
     );
   }

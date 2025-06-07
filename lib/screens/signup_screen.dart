@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 import '../config.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -68,14 +69,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
         if (!mounted) return;
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration successful')),
-        );
-
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (_) => const MainScreen()),
           (route) => false,
+        );
+
+        showAppSnackBar(
+          const SnackBar(content: Text('Registration successful')),
         );
       } else {
         final responseBody = json.decode(response.body);
