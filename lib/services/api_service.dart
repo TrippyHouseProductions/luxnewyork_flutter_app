@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/product.dart';
 import '../models/category.dart';
+import '../models/order.dart';
 
 class ApiService {
   static const String baseUrl = "http://10.0.2.2:8000";
@@ -56,6 +57,48 @@ class ApiService {
       return data.map((json) => Category.fromJson(json)).toList();
     } else {
       throw Exception("Failed to load categories");
+    }
+  }
+
+  // NOTE fetch all orders for the authenticated user
+  static Future<List<Order>> fetchOrders(String token) async {
+    final uri = Uri.parse('$baseUrl/api/orders');
+
+    final response = await http.get(
+      uri,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+      final List<dynamic> data = body['data'];
+      return data.map((json) => Order.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load orders');
+    }
+  }
+
+  // NOTE fetch details of a single order
+  static Future<Order> fetchOrderDetail(String token, int id) async {
+    final uri = Uri.parse('$baseUrl/api/orders/$id');
+
+    final response = await http.get(
+      uri,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+      final data = body['data'];
+      return Order.fromJson(data);
+    } else {
+      throw Exception('Failed to load order details');
     }
   }
 }
