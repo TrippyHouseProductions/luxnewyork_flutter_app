@@ -101,4 +101,27 @@ class ApiService {
       throw Exception('Failed to load order details');
     }
   }
+
+  // NOTE place a new order
+  static Future<Order> placeOrder(String token, String fakeInfo) async {
+    final uri = Uri.parse('$baseUrl/api/orders');
+
+    final response = await http.post(
+      uri,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({'fake_payment_info': fakeInfo}),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final body = jsonDecode(response.body);
+      final data = body['data'];
+      return Order.fromJson(data);
+    } else {
+      throw Exception('Failed to place order');
+    }
+  }
 }

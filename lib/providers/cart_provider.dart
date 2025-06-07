@@ -118,4 +118,10 @@ class CartProvider extends ChangeNotifier {
     }
     return sum;
   }
-}
+  void clearCart() {
+    _items.clear();
+    _cartItemIds.clear();
+    notifyListeners();
+  }
+
+  }
