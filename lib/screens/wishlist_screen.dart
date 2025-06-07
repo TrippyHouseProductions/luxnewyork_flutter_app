@@ -5,6 +5,7 @@ import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
 import 'package:luxnewyork_flutter_app/widgets/connection_error_widget.dart';
+import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -25,10 +26,26 @@ class _WishlistScreenState extends State<WishlistScreen> {
     await _loadWishlist();
   }
 
+  void _handleConnectivityChange() {
+    final offline = context.read<ConnectivityProvider>().isOffline;
+    if (!offline && _error != null && !_isLoading) {
+      _refreshWishlist();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _loadWishlist();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ConnectivityProvider>().addListener(_handleConnectivityChange);
+    });
+  }
+
+  @override
+  void dispose() {
+    context.read<ConnectivityProvider>().removeListener(_handleConnectivityChange);
+    super.dispose();
   }
 
   Future<void> _loadWishlist() async {

@@ -5,6 +5,7 @@ import '../widgets/list_tile_skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../widgets/skeleton.dart';
 import '../widgets/connection_error_widget.dart';
+import '../providers/connectivity_provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -25,10 +26,26 @@ class _CartScreenState extends State<CartScreen> {
     await _loadCart();
   }
 
+  void _handleConnectivityChange() {
+    final offline = context.read<ConnectivityProvider>().isOffline;
+    if (!offline && _error != null && !_isLoading) {
+      _refreshCart();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _loadCart();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ConnectivityProvider>().addListener(_handleConnectivityChange);
+    });
+  }
+
+  @override
+  void dispose() {
+    context.read<ConnectivityProvider>().removeListener(_handleConnectivityChange);
+    super.dispose();
   }
 
   Future<void> _loadCart() async {
