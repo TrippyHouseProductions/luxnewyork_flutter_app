@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../config.dart';
 
 class WishlistProvider extends ChangeNotifier {
   List<Product> _wishlist = [];
@@ -19,7 +20,7 @@ class WishlistProvider extends ChangeNotifier {
 
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/api/wishlist'),
+        Uri.parse('$apiBaseUrl/api/wishlist'),
         headers: {'Authorization': 'Bearer $token'},
       );
 
@@ -58,7 +59,7 @@ class WishlistProvider extends ChangeNotifier {
       final itemId = _wishlistItemIds[product.id];
       if (itemId != null) {
         final response = await http.delete(
-          Uri.parse('http://10.0.2.2:8000/api/wishlist/$itemId'),
+          Uri.parse('$apiBaseUrl/api/wishlist/$itemId'),
           headers: {'Authorization': 'Bearer $token'},
         );
         if (response.statusCode == 200 || response.statusCode == 204) {
@@ -70,7 +71,7 @@ class WishlistProvider extends ChangeNotifier {
       }
     } else {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/wishlist'),
+        Uri.parse('$apiBaseUrl/api/wishlist'),
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',

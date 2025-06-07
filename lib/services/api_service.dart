@@ -3,9 +3,14 @@ import 'package:http/http.dart' as http;
 import '../models/product.dart';
 import '../models/category.dart';
 import '../models/order.dart';
+import '../config.dart';
 
 class ApiService {
-  static const String baseUrl = "http://10.0.2.2:8000";
+  /// Base URL for API requests.
+  ///
+  /// This pulls the value from [apiBaseUrl] in `config.dart` so it can be
+  /// easily changed in one place.
+  static const String baseUrl = apiBaseUrl;
 
   /// NOTE fetching all the products from the api
   static Future<List<Product>> fetchProducts(

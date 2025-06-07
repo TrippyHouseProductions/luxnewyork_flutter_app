@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
+import '../config.dart';
 
 class CartProvider extends ChangeNotifier {
   List<Product> _items = [];
@@ -17,7 +18,7 @@ class CartProvider extends ChangeNotifier {
 
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/api/cart'),
+        Uri.parse('$apiBaseUrl/api/cart'),
         headers: {'Authorization': 'Bearer $token'},
       );
 
@@ -51,7 +52,7 @@ class CartProvider extends ChangeNotifier {
     final token = prefs.getString('auth_token') ?? '';
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/cart'),
+      Uri.parse('$apiBaseUrl/api/cart'),
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ class CartProvider extends ChangeNotifier {
 
     if (itemId != null) {
       final response = await http.delete(
-        Uri.parse('http://10.0.2.2:8000/api/cart/$itemId'),
+        Uri.parse('$apiBaseUrl/api/cart/$itemId'),
         headers: {'Authorization': 'Bearer $token'},
       );
 

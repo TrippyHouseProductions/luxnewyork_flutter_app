@@ -6,6 +6,7 @@ import 'package:luxnewyork_flutter_app/screens/signup_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/forgot_password_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
+import '../config.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _loginUser() async {
     setState(() => _isLoading = true);
-    final url = Uri.parse("http://10.0.2.2:8000/api/login");
+    final url = Uri.parse("$apiBaseUrl/api/login");
 
     try {
       final response = await http.post(
