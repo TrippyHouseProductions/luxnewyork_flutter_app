@@ -29,6 +29,7 @@ class ApiService {
   //   }
   // }
 
+  // NOTE fetching all the products from the api
   static Future<List<Product>> fetchProducts(
     String token, {
     int? categoryId,

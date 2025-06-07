@@ -1,4 +1,7 @@
-import 'dart:async';
+// <<<<<<< codex/add-country-specific-currency-calculation
+// import 'dart:async';
+// =======
+// >>>>>>> main
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
@@ -9,7 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocationProvider extends ChangeNotifier {
   String _currency = 'LKR';
   final double _aedToLkr = 81.45; // basic static exchange rate
-  StreamSubscription<Position>? _positionSub;
+// <<<<<<< codex/add-country-specific-currency-calculation
+//   StreamSubscription<Position>? _positionSub;
+// =======
+// >>>>>>> main
 
   String get currency => _currency;
 
@@ -45,6 +51,7 @@ class LocationProvider extends ChangeNotifier {
       }
 
       final position = await Geolocator.getCurrentPosition(
+// <<<<<<< codex/add-country-specific-currency-calculation
         desiredAccuracy: LocationAccuracy.low,
       );
       await _updateCurrency(position);
@@ -90,4 +97,26 @@ class LocationProvider extends ChangeNotifier {
     _positionSub?.cancel();
     super.dispose();
   }
+// =======
+//           desiredAccuracy: LocationAccuracy.low);
+
+//       final placemarks = await geocoding.placemarkFromCoordinates(
+//           position.latitude, position.longitude);
+//       if (placemarks.isNotEmpty) {
+//         final country = placemarks.first.country?.toLowerCase() ?? '';
+//         if (country.contains('sri lanka')) {
+//           _currency = 'LKR';
+//         } else if (country.contains('united arab emirates') ||
+//             country.contains('dubai')) {
+//           _currency = 'AED';
+//         }
+//         final prefs = await SharedPreferences.getInstance();
+//         await prefs.setString('currency', _currency);
+//         notifyListeners();
+//       }
+//     } catch (e) {
+//       debugPrint('Location detection error: $e');
+//     }
+//   }
+// >>>>>>> main
 }
