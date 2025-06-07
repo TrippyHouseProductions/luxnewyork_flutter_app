@@ -6,10 +6,14 @@ import '../widgets/list_tile_skeleton.dart';
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
+  /// NOTE Loads the list of about items from an external JSON service.
+  /// NOTE Returns a Future that resolves to a list of [AboutItem].
   Future<List<AboutItem>> _loadItems() async {
     return ExternalJsonService.fetchAboutItems();
   }
 
+  /// NOTE Builds the About screen with a list of items.
+  /// NOTE Displays a loading skeleton while fetching data.
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;

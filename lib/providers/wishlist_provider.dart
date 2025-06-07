@@ -6,11 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class WishlistProvider extends ChangeNotifier {
   List<Product> _wishlist = [];
-  final Map<int, int> _wishlistItemIds = {}; // productId -> wishlist item id
+  final Map<int, int> _wishlistItemIds = {};
+
+  /// NOTE productId -> wishlist item id
 
   List<Product> get wishlist => _wishlist;
 
-  // Fetch wishlist from API based on logged-in user (GET)
+  /// NOTE Fetch wishlist from API based on logged-in user (GET)
   Future<void> loadWishlist() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -45,7 +47,7 @@ class WishlistProvider extends ChangeNotifier {
     }
   }
 
-  // NOTE Toggle wishlist status of [product] and update backend (POST/DELETE)
+  /// NOTE Toggle wishlist status of [product] and update backend (POST/DELETE)
   Future<void> toggleWishlist(Product product) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -90,7 +92,7 @@ class WishlistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // NOTE Check if a product is in the wishlist
+  /// NOTE Check if a product is in the wishlist
   bool isInWishlist(int productId) {
     return _wishlist.any((product) => product.id == productId);
   }

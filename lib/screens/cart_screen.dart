@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
@@ -173,7 +175,7 @@ class _CartScreenState extends State<CartScreen> {
           ? Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+                'Total: \UAD${cartProvider.totalPrice.toStringAsFixed(2)}',
                 textAlign: TextAlign.end,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,

@@ -8,6 +8,8 @@ class Product {
   final int stock;
   final String sku;
 
+  /// NOTE Represents a product in the e-commerce application.
+  /// NOTE Contains fields for id, name, description, category, price, image path, stock quantity, and SKU.
   Product({
     required this.id,
     required this.name,
@@ -19,6 +21,8 @@ class Product {
     required this.sku,
   });
 
+  /// NOTE Factory constructor to create a Product instance from a JSON map.
+  /// NOTE Handles both string and Map types for name, description, image, and category.
   factory Product.fromJson(Map<String, dynamic> json) {
     String extractString(dynamic value) {
       if (value is String) return value;
@@ -42,6 +46,7 @@ class Product {
     );
   }
 
+  /// NOTE Converts the Product instance to a JSON map.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

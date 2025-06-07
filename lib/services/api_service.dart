@@ -6,7 +6,7 @@ import '../models/category.dart';
 class ApiService {
   static const String baseUrl = "http://10.0.2.2:8000";
 
-  // NOTE fetching all the products from the api
+  /// NOTE fetching all the products from the api
   static Future<List<Product>> fetchProducts(
     String token, {
     int? categoryId,
@@ -37,7 +37,7 @@ class ApiService {
     }
   }
 
-  // NOTE fetching all the categories from the api
+  /// NOTE fetching all the categories from the api
   static Future<List<Category>> fetchCategories(String token) async {
     final url = Uri.parse("$baseUrl/api/categories");
 

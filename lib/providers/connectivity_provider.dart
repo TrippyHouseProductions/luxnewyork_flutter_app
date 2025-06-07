@@ -21,7 +21,7 @@ class ConnectivityProvider extends ChangeNotifier {
       }
     });
 
-    // NOTE Initial check to set the initial state
+    /// NOTE Initial check to set the initial state
     Connectivity().checkConnectivity().then((results) {
       final offline = results.contains(ConnectivityResult.none);
       if (offline != _isOffline) {
