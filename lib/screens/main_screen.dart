@@ -258,7 +258,9 @@ import 'package:luxnewyork_flutter_app/screens/home_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
+import 'package:luxnewyork_flutter_app/providers/theme_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:battery_plus/battery_plus.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -271,6 +273,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   late StreamSubscription<List<ConnectivityResult>> _connectivitySub;
   bool _isOffline = false;
+  final Battery _battery = Battery();
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -285,6 +288,33 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  Future<void> _checkBattery() async {
+    final level = await _battery.batteryLevel;
+    if (!mounted || level == -1) return;
+
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = context.read<ThemeProvider>();
+
+    final snackBar = SnackBar(
+      content: Text(
+          isDark ? 'Dark mode helps you save battery.' :
+              'Enabling dark mode helps you save battery.'),
+      action: isDark
+          ? null
+          : SnackBarAction(
+              label: 'ENABLE',
+              onPressed: () {
+                themeProvider.setThemeMode(ThemeMode.dark);
+              },
+            ),
+    );
+
+    if (level < 15) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -292,6 +322,7 @@ class _MainScreenState extends State<MainScreen> {
     // Load cart items after the first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<CartProvider>(context, listen: false).loadCart();
+      _checkBattery();
     });
 
     // Listen to connectivity changes (for connectivity_plus v6+)
