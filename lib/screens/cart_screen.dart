@@ -143,7 +143,7 @@ class _CartScreenState extends State<CartScreen> {
                       fit: BoxFit.cover,
                     ),
               title: Text(product.name),
-              subtitle: Text(product.price),
+              subtitle: Text('UAD${product.price}'),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () async {
