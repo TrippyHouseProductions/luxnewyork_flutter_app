@@ -1,0 +1,359 @@
+[
+    {
+        "country": "Sri Lanka",
+        "city": "Colombo",
+        "latitude": 6.9271,
+        "longitude": 79.8612,
+        "storeName": "LuxNewYork Colombo"
+    },
+    {
+        "country": "UAE",
+        "city": "Dubai",
+        "latitude": 25.276987,
+        "longitude": 55.296249,
+        "storeName": "LuxNewYork Dubai"
+    },
+    {
+        "country": "India",
+        "city": "Mumbai",
+        "latitude": 19.0760,
+        "longitude": 72.8777,
+        "storeName": "LuxNewYork Mumbai"
+    },
+    {
+    "country": "USA",
+    "city": "New York",
+    "latitude": 40.7128,
+    "longitude": -74.0060,
+    "storeName": "LuxNewYork New York"
+    },
+    {
+    "country": "Canada",
+    "city": "Toronto",
+    "latitude": 43.651070,
+    "longitude": -79.347015,
+    "storeName": "LuxNewYork Toronto"
+    },
+    {
+    "country": "UK",
+    "city": "London",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "storeName": "LuxNewYork London"
+    },
+    {
+    "country": "Australia",
+    "city": "Sydney",
+    "latitude": -33.8688,
+    "longitude": 151.2093,
+    "storeName": "LuxNewYork Sydney"
+    },
+    {
+    "country": "Japan",
+    "city": "Tokyo",
+    "latitude": 35.6762,
+    "longitude": 139.6503,
+    "storeName": "LuxNewYork Tokyo"
+    },
+    {
+    "country": "Germany",
+    "city": "Berlin",
+    "latitude": 52.5200,
+    "longitude": 13.4050,
+    "storeName": "LuxNewYork Berlin"
+    },
+    {
+    "country": "France",
+    "city": "Paris",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "storeName": "LuxNewYork Paris"
+    },
+    {
+    "country": "Italy",
+    "city": "Rome",
+    "latitude": 41.9028,
+    "longitude": 12.4964,
+    "storeName": "LuxNewYork Rome"
+    },
+    {
+    "country": "Spain",
+    "city": "Madrid",
+    "latitude": 40.4168,
+    "longitude": -3.7038,
+    "storeName": "LuxNewYork Madrid"
+    },
+    {
+    "country": "Brazil",
+    "city": "São Paulo",
+    "latitude": -23.5505,
+    "longitude": -46.6333,
+    "storeName": "LuxNewYork São Paulo"
+    },
+    {
+    "country": "Mexico",
+    "city": "Mexico City",
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "storeName": "LuxNewYork Mexico City"
+    },
+    {
+    "country": "South Africa",
+    "city": "Cape Town",
+    "latitude": -33.9249,
+    "longitude": 18.4241,
+    "storeName": "LuxNewYork Cape Town"
+    },
+    {
+    "country": "Russia",
+    "city": "Moscow",
+    "latitude": 55.7558,
+    "longitude": 37.6173,
+    "storeName": "LuxNewYork Moscow"
+    },
+    {
+    "country": "China",
+    "city": "Beijing",
+    "latitude": 39.9042,
+    "longitude": 116.4074,
+    "storeName": "LuxNewYork Beijing"
+    },
+    {
+    "country": "South Korea",
+    "city": "Seoul",
+    "latitude": 37.5665,
+    "longitude": 126.9780,
+    "storeName": "LuxNewYork Seoul"
+    },
+    {
+    "country": "Singapore",
+    "city": "Singapore",
+    "latitude": 1.3521,
+    "longitude": 103.8198,
+    "storeName": "LuxNewYork Singapore"
+    },
+    {
+    "country": "Thailand",
+    "city": "Bangkok",
+    "latitude": 13.7563,
+    "longitude": 100.5018,
+    "storeName": "LuxNewYork Bangkok"
+    },
+    {
+    "country": "Indonesia",
+    "city": "Jakarta",
+    "latitude": -6.2088,
+    "longitude": 106.8456,
+    "storeName": "LuxNewYork Jakarta"
+    },
+    {
+    "country": "Malaysia",
+    "city": "Kuala Lumpur",
+    "latitude": 3.139,"longitude": 101.6869,
+    "storeName": "LuxNewYork Kuala Lumpur"
+    },
+    {
+    "country": "Philippines",
+    "city": "Manila",
+    "latitude": 14.5995,
+    "longitude": 120.9842,
+    "storeName": "LuxNewYork Manila"
+    },
+    {
+    "country": "Vietnam",
+    "city": "Hanoi",
+    "latitude": 21.0285,
+    "longitude": 105.8542,
+    "storeName": "LuxNewYork Hanoi"
+    },
+    {
+    "country": "Turkey",
+    "city": "Istanbul",
+    "latitude": 41.0082,
+    "longitude": 28.9784,
+    "storeName": "LuxNewYork Istanbul"
+    },
+    {
+    "country": "Egypt",
+    "city": "Cairo",
+    "latitude": 30.0444,
+    "longitude": 31.2357,
+    "storeName": "LuxNewYork Cairo"
+    },
+    {
+    "country": "Argentina",
+    "city": "Buenos Aires",
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "storeName": "LuxNewYork Buenos Aires"
+    },
+    {
+    "country": "Chile",
+    "city": "Santiago",
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "storeName": "LuxNewYork Santiago"
+    },
+    {
+    "country": "Colombia",
+    "city": "Bogotá",
+    "latitude": 4.7110,
+    "longitude": -74.0721,
+    "storeName": "LuxNewYork Bogotá"
+    }, 
+    {
+    "country": "Peru",
+    "city": "Lima",
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "storeName": "LuxNewYork Lima"
+    },
+    {
+    "country": "Uruguay",
+    "city": "Montevideo",
+    "latitude": -34.9011,
+    "longitude": -56.1645,
+    "storeName": "LuxNewYork Montevideo"
+    },
+    {
+    "country": "Poland",
+    "city": "Warsaw",
+    "latitude": 52.2297,
+    "longitude": 21.0122,
+    "storeName": "LuxNewYork Warsaw"
+    },
+    {
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "latitude": 52.3676,
+    "longitude": 4.9041,
+    "storeName": "LuxNewYork Amsterdam"
+    },
+    {
+    "country": "Belgium",
+    "city": "Brussels",
+    "latitude": 50.8503,
+    "longitude": 4.3517,
+    "storeName": "LuxNewYork Brussels"
+    },
+    {
+    "country": "Sweden",
+    "city": "Stockholm",
+    "latitude": 59.3293,
+    "longitude": 18.0686,
+    "storeName": "LuxNewYork Stockholm"
+    },
+    {
+    "country": "Finland",
+    "city": "Helsinki",
+    "latitude": 60.1695,
+    "longitude": 24.9354,
+    "storeName": "LuxNewYork Helsinki"
+    },
+    {
+    "country": "Norway",
+    "city": "Oslo",
+    "latitude": 59.9139,
+    "longitude": 10.7522,
+    "storeName": "LuxNewYork Oslo"
+    },
+    {
+    "country": "Denmark",
+    "city": "Copenhagen",
+    "latitude": 55.6761,
+    "longitude": 12.5683,
+    "storeName": "LuxNewYork Copenhagen"
+    },
+    {
+    "country": "Switzerland",
+    "city": "Zurich",
+    "latitude": 47.3769,
+    "longitude": 8.5417,
+    "storeName": "LuxNewYork Zurich"
+    },
+    {
+    "country": "Austria",
+    "city": "Vienna",
+    "latitude": 48.2082,
+    "longitude": 16.3738,
+    "storeName": "LuxNewYork Vienna"
+    },
+    {
+    "country": "Greece",
+    "city": "Athens",
+    "latitude": 37.9838,
+    "longitude": 23.7275,
+    "storeName": "LuxNewYork Athens"
+    },
+    {
+    "country": "Portugal",
+    "city": "Lisbon",
+    "latitude": 38.7223,
+    "longitude": -9.1393,
+    "storeName": "LuxNewYork Lisbon"
+    },
+    {
+    "country": "Ireland",
+    "city": "Dublin",
+    "latitude": 53.3498,
+    "longitude": -6.2603,
+    "storeName": "LuxNewYork Dublin"
+    },
+    {
+    "country": "Czech Republic",
+    "city": "Prague",
+    "latitude": 50.0755,
+    "longitude": 14.4378,
+    "storeName": "LuxNewYork Prague"
+    },
+    {
+    "country": "Hungary",
+    "city": "Budapest",
+    "latitude": 47.4979,
+    "longitude": 19.0402,
+    "storeName": "LuxNewYork Budapest"
+    },
+    {
+    "country": "Croatia",
+    "city": "Zagreb",
+    "latitude": 45.8150,
+    "longitude": 15.9819,
+    "storeName": "LuxNewYork Zagreb"
+    },
+    {
+    "country": "Slovakia",
+    "city": "Bratislava",
+    "latitude": 48.1482,
+    "longitude": 17.1067,
+    "storeName": "LuxNewYork Bratislava"
+    },
+    {
+    "country": "Bulgaria",
+    "city": "Sofia",
+    "latitude": 42.6977,
+    "longitude": 23.3219,
+    "storeName": "LuxNewYork Sofia"
+    },
+    {
+    "country": "Romania",
+    "city": "Bucharest",
+    "latitude": 44.4268,
+    "longitude": 26.1025,
+    "storeName": "LuxNewYork Bucharest"
+    },
+    {
+    "country": "Serbia",
+    "city": "Belgrade",
+    "latitude": 44.7866,
+    "longitude": 20.4489,
+    "storeName": "LuxNewYork Belgrade"
+    },
+    {
+    "country": "Ukraine",
+    "city": "Kyiv",
+    "latitude": 50.4501,
+    "longitude": 30.5234,
+    "storeName": "LuxNewYork Kyiv"
+    }
+]
+
