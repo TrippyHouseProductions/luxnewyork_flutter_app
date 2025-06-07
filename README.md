@@ -30,6 +30,10 @@
 ✅ **Category filtering**
 ✅ **Search products funnctionality**
 ✅ **Location-based store notifications**
+✅ **Offline product & category caching for zero connectivity**
+✅ **Connectivity status awareness with offline/online alerts**
+✅ **Battery level checks to suggest dark mode**
+✅ **Pull-to-refresh lists for quick refresh**
 
 ---
 
