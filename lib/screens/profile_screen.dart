@@ -268,13 +268,12 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     if (email == null) return;
     final dir = await getApplicationDocumentsDirectory();
     final path = '${dir.path}/profile_photo_$email.png';
-    final file = File(path);
-    await picked.saveTo(file.path);
-    await prefs.setString('profile_photo_' + email, file.path);
-    await File(picked.path).copy(path);
-    await prefs.setString('profile_photo_$email', path);
+
+    final savedImage = await File(picked.path).copy(path);
+    await prefs.setString('profile_photo_$email', savedImage.path);
+
     setState(() {
-      _profileImage = file;
+      _profileImage = savedImage;
     });
   }
 
