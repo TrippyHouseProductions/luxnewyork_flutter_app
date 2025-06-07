@@ -7,21 +7,20 @@ import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'skeleton.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
 
   const ProductCard({super.key, required this.product});
 
-  void _showMessage(BuildContext context, String message,
-      {VoidCallback? onView}) {
-    ScaffoldMessenger.of(context).showSnackBar(
+  void _showMessage(String message, {VoidCallback? onView}) {
+    showAppSnackBar(
       SnackBar(
         content: Text(message),
         duration: const Duration(seconds: 2),
-        action: onView == null
-            ? null
-            : SnackBarAction(label: 'VIEW', onPressed: onView),
+        action:
+            onView == null ? null : SnackBarAction(label: 'VIEW', onPressed: onView),
       ),
     );
   }
@@ -119,12 +118,10 @@ class ProductCard extends StatelessWidget {
                                 await wishlist.toggleWishlist(product);
                                 if (isInWishlist) {
                                   _showMessage(
-                                    context,
                                     '${product.name} removed from wishlist',
                                   );
                                 } else {
                                   _showMessage(
-                                    context,
                                     '${product.name} added to wishlist',
                                     onView: () {
                                       Navigator.push(
