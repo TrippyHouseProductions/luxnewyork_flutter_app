@@ -6,6 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../widgets/skeleton.dart';
 import '../widgets/connection_error_widget.dart';
 import '../providers/connectivity_provider.dart';
+import '../widgets/empty_state_widget.dart';
+import 'main_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -89,10 +91,20 @@ class _CartScreenState extends State<CartScreen> {
     } else if (items.isEmpty) {
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
-        children: const [
+        children: [
           SizedBox(
             height: 300,
-            child: Center(child: Text('Your cart is empty.')),
+            child: EmptyStateWidget(
+              message: 'Your cart is empty.',
+              actionText: 'Shop Now',
+              onAction: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                );
+              },
+              icon: Icons.shopping_bag_outlined,
+            ),
           )
         ],
       );

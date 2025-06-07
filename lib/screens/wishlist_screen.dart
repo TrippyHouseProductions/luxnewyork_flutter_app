@@ -6,6 +6,8 @@ import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
 import 'package:luxnewyork_flutter_app/widgets/connection_error_widget.dart';
 import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
+import 'package:luxnewyork_flutter_app/widgets/empty_state_widget.dart';
+import 'main_screen.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -98,14 +100,19 @@ class _WishlistScreenState extends State<WishlistScreen> {
     } else if (wishlist.isEmpty) {
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
-        children: const [
+        children: [
           SizedBox(
             height: 300,
-            child: Center(
-              child: Text(
-                "Your wishlist is empty.",
-                style: TextStyle(fontSize: 16),
-              ),
+            child: EmptyStateWidget(
+              message: 'Your wishlist is empty.',
+              actionText: 'Browse Products',
+              onAction: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MainScreen()),
+                );
+              },
+              icon: Icons.favorite_border,
             ),
           )
         ],
