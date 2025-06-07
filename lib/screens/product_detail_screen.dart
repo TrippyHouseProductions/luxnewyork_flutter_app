@@ -6,15 +6,22 @@ import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
   const ProductDetailScreen({super.key, required this.product});
 
-  void _showSnackbar(BuildContext context, String message) {
+  void _showSnackbar(BuildContext context, String message, {VoidCallback? onView}) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 2),
+        action:
+            onView == null ? null : SnackBarAction(label: 'VIEW', onPressed: onView),
+      ),
     );
   }
 
@@ -136,7 +143,17 @@ class ProductDetailScreen extends StatelessWidget {
                   } else {
                     try {
                       await cart.addItem(product);
-                      _showSnackbar(context, '${product.name} added to cart');
+                      _showSnackbar(
+                        context,
+                        '${product.name} added to cart',
+                        onView: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const CartScreen()),
+                          );
+                        },
+                      );
                     } catch (_) {
                       _showSnackbar(context, 'Failed to add to cart');
                     }
@@ -162,12 +179,24 @@ class ProductDetailScreen extends StatelessWidget {
                       Provider.of<WishlistProvider>(context, listen: false);
                   final isFav = wishlist.isInWishlist(product.id);
                   await wishlist.toggleWishlist(product);
-                  _showSnackbar(
-                    context,
-                    isFav
-                        ? '${product.name} removed from wishlist'
-                        : '${product.name} added to wishlist',
-                  );
+                  if (isFav) {
+                    _showSnackbar(
+                      context,
+                      '${product.name} removed from wishlist',
+                    );
+                  } else {
+                    _showSnackbar(
+                      context,
+                      '${product.name} added to wishlist',
+                      onView: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const WishlistScreen()),
+                        );
+                      },
+                    );
+                  }
                 },
           icon: Consumer<WishlistProvider>(
             builder: (_, provider, __) {

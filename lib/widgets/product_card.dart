@@ -4,6 +4,7 @@ import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'skeleton.dart';
 
@@ -12,11 +13,15 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({super.key, required this.product});
 
-  void _showMessage(BuildContext context, String message) {
+  void _showMessage(BuildContext context, String message,
+      {VoidCallback? onView}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
         duration: const Duration(seconds: 2),
+        action: onView == null
+            ? null
+            : SnackBarAction(label: 'VIEW', onPressed: onView),
       ),
     );
   }
@@ -112,12 +117,24 @@ class ProductCard extends StatelessWidget {
                             ? null
                             : () async {
                                 await wishlist.toggleWishlist(product);
-                                _showMessage(
-                                  context,
-                                  isInWishlist
-                                      ? '${product.name} removed from wishlist'
-                                      : '${product.name} added to wishlist',
-                                );
+                                if (isInWishlist) {
+                                  _showMessage(
+                                    context,
+                                    '${product.name} removed from wishlist',
+                                  );
+                                } else {
+                                  _showMessage(
+                                    context,
+                                    '${product.name} added to wishlist',
+                                    onView: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => const WishlistScreen()),
+                                      );
+                                    },
+                                  );
+                                }
                               },
                       ),
                     ],
