@@ -39,7 +39,7 @@ class AboutScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Error: \${snapshot.error}'));
+            return const Center(child: Text('Error: \${snapshot.error}'));
           }
           final items = snapshot.data ?? [];
           return ListView.separated(
