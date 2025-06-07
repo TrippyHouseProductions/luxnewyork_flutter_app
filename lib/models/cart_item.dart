@@ -5,6 +5,8 @@ class CartItem {
   final double price;
   int quantity;
 
+  /// NOTE Represents an item in the shopping cart.
+  /// NOTE Contains fields for id, name, image URL, price, and quantity.
   CartItem({
     required this.id,
     required this.name,

@@ -4,6 +4,8 @@ class WishlistItem {
   final String image;
   final double price;
 
+  /// NOTE Represents an item in the wishlist.
+  /// NOTE Contains fields for id, name, image URL, and price.
   WishlistItem({
     required this.id,
     required this.name,

@@ -98,7 +98,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'UAD ${product.price}',
+                        'UAD${product.price}',
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: colorScheme.primary,
                         ),

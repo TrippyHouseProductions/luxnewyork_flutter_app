@@ -114,4 +114,39 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<OrderProvider>(
+      builder: (context, provider, _) {
+        if (provider.isLoading) {
+          return ListView.builder(
+            itemCount: 4,
+            itemBuilder: (_, __) => const ListTileSkeleton(),
+          );
+        }
+
+        if (provider.orders.isEmpty) {
+          return const Center(child: Text('No orders found'));
+        }
+
+        return RefreshIndicator(
+          onRefresh: _refresh,
+          child: ListView.builder(
+            itemCount: provider.orders.length,
+            itemBuilder: (_, index) {
+              final order = provider.orders[index];
+              return ListTile(
+                title: Text('Order #${order.id}'),
+                subtitle: order.total.isNotEmpty
+                    ? Text('Total: ${order.total}')
+                    : null,
+                onTap: () => _showOrderDetails(order.id),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
 }

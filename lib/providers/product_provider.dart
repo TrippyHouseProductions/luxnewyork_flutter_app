@@ -6,6 +6,8 @@ import '../models/product.dart';
 import '../services/api_service.dart';
 import '../services/storage_service.dart';
 
+/// NOTE ProductProvider is a ChangeNotifier that manages the state of products.
+/// NOTE It fetches products from the API, supports pagination, and handles offline storage.
 class ProductProvider extends ChangeNotifier {
   final int _perPage = 10;
   List<Product> _products = [];
@@ -21,6 +23,8 @@ class ProductProvider extends ChangeNotifier {
   bool get isLoadingMore => _isLoadingMore;
   bool get hasMore => _hasMore;
 
+  // NOTE Fetches products from the API or local storage based on the provided category ID and search query.
+  // NOTE Resets the pagination and clears the product list before fetching.
   Future<void> fetchProducts({int? categoryId, String search = ''}) async {
     _page = 1;
     _hasMore = true;
@@ -35,7 +39,8 @@ class ProductProvider extends ChangeNotifier {
 
     final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      _products = await StorageService.loadProducts();
+      _products = await StorageService
+          .loadProducts(); // NOTE Load from local storage if offline
       _isLoading = false;
       _hasMore = false;
       notifyListeners();
@@ -52,9 +57,11 @@ class ProductProvider extends ChangeNotifier {
       );
       _products = fetched;
       if (fetched.length < _perPage) _hasMore = false;
-      await StorageService.saveProducts(_products);
+      await StorageService.saveProducts(
+          _products); // NOTE Save fetched products to local storage
     } catch (_) {
-      final cached = await StorageService.loadProducts();
+      final cached = await StorageService
+          .loadProducts(); // NOTE Load from local storage if API fails
       _products = cached;
       _hasMore = false;
     }
@@ -62,6 +69,8 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// NOTE Loads more products for pagination.
+  /// NOTE It checks if there are more products to load and if a loading operation is already in progress.
   Future<void> loadMore() async {
     if (!_hasMore || _isLoadingMore) return;
     _isLoadingMore = true;

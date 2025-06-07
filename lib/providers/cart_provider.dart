@@ -10,7 +10,7 @@ class CartProvider extends ChangeNotifier {
 
   List<Product> get items => _items;
 
-  /// Load cart items for the logged-in user from the API
+  /// NOTE Load cart items for the logged-in user from the API
   Future<void> loadCart() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -43,7 +43,7 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
-  /// Add a product to the cart via the API if it isn't already there
+  /// NOTE Add a product to the cart via the API if it isn't already there
   Future<void> addItem(Product product) async {
     if (isInCart(product.id)) return;
 
@@ -56,7 +56,10 @@ class CartProvider extends ChangeNotifier {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       },
-      body: json.encode({'product_id': product.id}),
+      body: json.encode({
+        'product_id': product.id,
+        'quantity': 1, // Default quantity to 1
+      }),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -68,14 +71,19 @@ class CartProvider extends ChangeNotifier {
       }
       notifyListeners();
     } else {
+      print('Add to cart failed: ${response.body}');
       throw Exception('Failed to add to cart');
     }
   }
 
+  /// NOTE Check if a product is already in the cart
+  /// NOTE Returns true if the product is in the cart, false otherwise.
   bool isInCart(int productId) {
     return _items.any((item) => item.id == productId);
   }
 
+  /// NOTE Remove a product from the cart via the API
+  /// NOTE If the product is not in the cart, it does nothing.
   Future<void> removeItem(int productId) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token') ?? '';
@@ -100,7 +108,7 @@ class CartProvider extends ChangeNotifier {
 
   int get itemCount => _items.length;
 
-  /// Compute total price of items in the cart
+  /// NOTE Compute total price of items in the cart
   double get totalPrice {
     double sum = 0;
     for (final item in _items) {
