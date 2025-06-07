@@ -11,6 +11,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -67,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
         // Store token and user data in shared preferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
-        await prefs.setString('user_email',
-            emailFromServer ?? _emailController.text.trim());
+        await prefs.setString(
+            'user_email', emailFromServer ?? _emailController.text.trim());
         if (name != null) {
           await prefs.setString('user_name', name);
         }
