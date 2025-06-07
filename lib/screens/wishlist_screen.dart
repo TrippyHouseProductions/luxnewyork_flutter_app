@@ -85,11 +85,16 @@ class _WishlistScreenState extends State<WishlistScreen> {
         ),
       );
     } else if (_error != null) {
+      final emptyHeight = MediaQuery.of(context).size.height -
+          kToolbarHeight -
+          kBottomNavigationBarHeight -
+          MediaQuery.of(context).padding.top;
+
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
           SizedBox(
-            height: 300,
+            height: emptyHeight,
             child: ConnectionErrorWidget(
               message: _error!,
               onRetry: _refreshWishlist,
@@ -98,11 +103,16 @@ class _WishlistScreenState extends State<WishlistScreen> {
         ],
       );
     } else if (wishlist.isEmpty) {
+      final emptyHeight = MediaQuery.of(context).size.height -
+          kToolbarHeight -
+          kBottomNavigationBarHeight -
+          MediaQuery.of(context).padding.top;
+
       body = ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
           SizedBox(
-            height: 300,
+            height: emptyHeight,
             child: EmptyStateWidget(
               message: 'Your wishlist is empty.',
               actionText: 'Browse Products',
