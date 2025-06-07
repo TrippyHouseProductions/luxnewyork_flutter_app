@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/order_provider.dart';
 import '../widgets/list_tile_skeleton.dart';
+import '../widgets/empty_state_widget.dart';
+import 'main_screen.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   const MyOrdersScreen({super.key});
@@ -79,12 +81,27 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           }
 
           if (provider.orders.isEmpty) {
+            final emptyHeight = MediaQuery.of(context).size.height -
+                kToolbarHeight -
+                kBottomNavigationBarHeight -
+                MediaQuery.of(context).padding.top;
+
             return ListView(
               physics: const AlwaysScrollableScrollPhysics(),
-              children: const [
+              children: [
                 SizedBox(
-                  height: 300,
-                  child: Center(child: Text('No orders found')),
+                  height: emptyHeight,
+                  child: EmptyStateWidget(
+                    message: 'No orders found.',
+                    actionText: 'Shop Now',
+                    onAction: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const MainScreen()),
+                      );
+                    },
+                    icon: Icons.receipt_long,
+                  ),
                 ),
               ],
             );
