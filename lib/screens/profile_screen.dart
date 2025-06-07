@@ -36,6 +36,7 @@ class ProfileScreen extends StatelessWidget {
               final prefs = await SharedPreferences.getInstance();
               final email = prefs.getString('user_email');
               await prefs.remove('auth_token');
+              await prefs.remove('user_name');
               if (email != null) {
                 await prefs.remove('user_email');
                 await prefs.remove('profile_photo_$email');
@@ -103,6 +104,7 @@ class _UserProfileSection extends StatefulWidget {
 class _UserProfileSectionState extends State<_UserProfileSection> {
   File? _profileImage;
   String? _email;
+  String? _name;
 
   @override
   void initState() {
@@ -113,12 +115,14 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final email = prefs.getString('user_email');
+    final name = prefs.getString('user_name');
     String? imagePath;
     if (email != null) {
       imagePath = prefs.getString('profile_photo_$email');
     }
     setState(() {
       _email = email;
+      _name = name;
       if (imagePath != null && File(imagePath).existsSync()) {
         _profileImage = File(imagePath);
       }
@@ -165,6 +169,8 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
           ),
         ),
         const SizedBox(height: 10),
+        if (_name != null)
+          Text(_name!, style: textTheme.titleMedium),
         if (_email != null)
           Text(_email!,
               style:
