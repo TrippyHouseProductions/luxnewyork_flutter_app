@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
+import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -57,7 +58,7 @@ class ProductDetailScreen extends StatelessWidget {
               if (loadingProgress == null) return child;
               return const SizedBox(
                 height: 300,
-                child: Center(child: CircularProgressIndicator()),
+                child: Skeleton(height: 300),
               );
             },
           ),

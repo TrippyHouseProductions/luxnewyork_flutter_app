@@ -68,6 +68,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/category.dart';
 import '../services/api_service.dart';
 import '../services/storage_service.dart';
+import 'category_filter_skeleton.dart';
 
 class CategoryFilter extends StatefulWidget {
   final Function(int? categoryId)? onCategorySelected;
@@ -123,7 +124,7 @@ class _CategoryFilterState extends State<CategoryFilter> {
     return SizedBox(
       height: 50,
       child: _categories.isEmpty
-          ? const Center(child: CircularProgressIndicator())
+          ? const CategoryFilterSkeleton()
           : ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),

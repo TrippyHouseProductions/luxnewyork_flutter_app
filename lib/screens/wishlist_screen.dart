@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
+import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -50,14 +51,18 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
     Widget body;
     if (_isLoading) {
-      body = ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        children: const [
-          SizedBox(
-            height: 300,
-            child: Center(child: CircularProgressIndicator()),
-          )
-        ],
+      body = Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.builder(
+          itemCount: 6,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.6,
+          ),
+          itemBuilder: (_, __) => const ProductCardSkeleton(),
+        ),
       );
     } else if (_error != null) {
       body = ListView(

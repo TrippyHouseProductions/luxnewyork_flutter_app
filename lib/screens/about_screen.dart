@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/about_item.dart';
 import '../services/external_json_service.dart';
+import '../widgets/list_tile_skeleton.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -18,7 +19,10 @@ class AboutScreen extends StatelessWidget {
         future: _loadItems(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return ListView.builder(
+              itemCount: 5,
+              itemBuilder: (_, __) => const ListTileSkeleton(),
+            );
           }
           if (snapshot.hasError) {
             return const Center(child: Text('Error: \${snapshot.error}'));

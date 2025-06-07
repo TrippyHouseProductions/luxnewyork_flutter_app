@@ -136,6 +136,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
 import 'package:luxnewyork_flutter_app/widgets/search_bar.dart';
+import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
+import 'package:luxnewyork_flutter_app/widgets/category_filter_skeleton.dart';
 
 // ANCHOR models
 import 'package:luxnewyork_flutter_app/models/product.dart';
@@ -276,9 +278,17 @@ class _HomeScreenState extends State<HomeScreen> {
       future: _productFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 60),
-            child: Center(child: CircularProgressIndicator()),
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: 6,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.6,
+            ),
+            itemBuilder: (_, __) => const ProductCardSkeleton(),
           );
         } else if (snapshot.hasError) {
           return Padding(

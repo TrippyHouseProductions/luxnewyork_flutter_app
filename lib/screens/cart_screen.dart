@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
+import '../widgets/list_tile_skeleton.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -47,14 +48,10 @@ class _CartScreenState extends State<CartScreen> {
 
     Widget body;
     if (_isLoading) {
-      body = ListView(
+      body = ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
-        children: const [
-          SizedBox(
-            height: 300,
-            child: Center(child: CircularProgressIndicator()),
-          )
-        ],
+        itemCount: 3,
+        itemBuilder: (_, __) => const ListTileSkeleton(),
       );
     } else if (_error != null) {
       body = ListView(
