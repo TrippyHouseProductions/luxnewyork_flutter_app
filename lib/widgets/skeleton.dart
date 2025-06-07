@@ -18,6 +18,7 @@ class Skeleton extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
+      period: const Duration(milliseconds: 2000),
       child: Container(
         width: width,
         height: height,
