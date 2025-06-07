@@ -169,8 +169,7 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
           ),
         ),
         const SizedBox(height: 10),
-        if (_name != null)
-          Text(_name!, style: textTheme.titleMedium),
+        if (_name != null) Text(_name!, style: textTheme.titleMedium),
         if (_email != null)
           Text(_email!,
               style:
