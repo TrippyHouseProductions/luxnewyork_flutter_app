@@ -62,7 +62,7 @@ void main() async {
 
   final storeService = StoreProximityService();
   await storeService.init();
-  await storeService.checkNearbyStores(); // optional: do it once on app launch
+  await storeService.checkNearbyStores();
 
   runApp(
     MultiProvider(
