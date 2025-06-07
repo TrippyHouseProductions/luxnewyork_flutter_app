@@ -29,6 +29,7 @@
 ✅ **Wishlist functionalty**
 ✅ **Category filtering**
 ✅ **Search products funnctionality**
+✅ **Location-based store notifications**
 
 ---
 

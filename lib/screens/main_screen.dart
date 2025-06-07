@@ -261,6 +261,7 @@ import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/theme_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:battery_plus/battery_plus.dart';
+import 'package:luxnewyork_flutter_app/services/location_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -314,6 +315,11 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Future<void> _showLocationNotification() async {
+    await LocationService.init();
+    await LocationService.showLocationNotification();
+  }
+  
   @override
   void initState() {
     super.initState();
@@ -322,6 +328,7 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<CartProvider>(context, listen: false).loadCart();
       _checkBattery();
+      _showLocationNotification();
     });
 
     // Listen to connectivity changes (for connectivity_plus v6+)
