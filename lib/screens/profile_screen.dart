@@ -173,9 +173,28 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
 
     return Column(
       children: [
-        GestureDetector(
-          onTap: _pickImage,
-          child: avatar,
+        Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            GestureDetector(
+              onTap: _pickImage,
+              child: avatar,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: InkWell(
+                onTap: _pickImage,
+                borderRadius: BorderRadius.circular(20),
+                child: CircleAvatar(
+                  radius: 16,
+                  backgroundColor: colorScheme.primary,
+                  child: Icon(Icons.camera_alt,
+                      size: 16, color: colorScheme.onPrimary),
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 10),
         if (_name != null) Text(_name!, style: textTheme.titleMedium),
