@@ -78,6 +78,21 @@ flutter run
 flutter run -d chrome
 ```
 
+### **5. Configure API Base URL**
+
+The app communicates with a backend server using an API base URL defined in
+`lib/config.dart`. By default, it is set to:
+
+```dart
+class Config {
+  static const String apiBaseUrl = 'http://10.0.2.2:8000';
+}
+```
+
+The address `http://10.0.2.2:8000` targets a local development server that is
+reachable from Android emulators. Update `apiBaseUrl` in `lib/config.dart` when
+running on real devices or deploying to production.
+
 ---
 
 ## **Screenshots(Coming Soon)**
