@@ -1,5 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:luxnewyork_flutter_app/screens/login_screen.dart';
+import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
+import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
+import '../config.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -17,21 +23,84 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   //ANCHOR - Use of notifications
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign Up Successful! Please Login')),
-      );
-      Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
-      });
+      _registerUser();
     }
+  }
+
+  Future<void> _registerUser() async {
+    setState(() => _isLoading = true);
+    final url = Uri.parse('$apiBaseUrl/api/register');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'name': _nameController.text.trim(),
+          'email': _emailController.text.trim(),
+          'password': _passwordController.text,
+        }),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final responseData = json.decode(response.body);
+        final token = responseData['token'];
+        String? name;
+        String? emailFromServer;
+        if (responseData['user'] != null) {
+          final user = responseData['user'];
+          name = user['name'];
+          emailFromServer = user['email'];
+        }
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('auth_token', token);
+        await prefs.setString('user_email', emailFromServer ?? _emailController.text.trim());
+        await prefs.setString('user_name', name ?? _nameController.text.trim());
+
+        if (!mounted) return;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Registration successful')),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const MainScreen()),
+        );
+      } else {
+        final responseBody = json.decode(response.body);
+        _showErrorDialog(responseBody['message'] ?? 'Registration failed.');
+      }
+    } catch (e) {
+      _showErrorDialog('Connection error: $e');
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Registration Failed'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -171,12 +240,14 @@ class _SignupScreenState extends State<SignupScreen> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: _submitForm,
+        onPressed: _isLoading ? null : _submitForm,
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        child: const Text("Sign Up"),
+        child: _isLoading
+            ? const Skeleton(height: 20, width: 20)
+            : const Text("Sign Up"),
       ),
     );
   }
