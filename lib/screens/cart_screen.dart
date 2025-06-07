@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/list_tile_skeleton.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import '../widgets/skeleton.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -82,14 +84,25 @@ class _CartScreenState extends State<CartScreen> {
           return Card(
             margin: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
-              leading: Image(
-                image: product.imagePath.startsWith('http')
-                    ? NetworkImage(product.imagePath)
-                    : AssetImage(product.imagePath) as ImageProvider,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
+              leading: product.imagePath.startsWith('http')
+                  ? CachedNetworkImage(
+                      imageUrl: product.imagePath,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Skeleton(
+                          width: 50,
+                          height: 50,
+                          borderRadius: BorderRadius.circular(8)),
+                      errorWidget: (_, __, ___) =>
+                          const Icon(Icons.broken_image),
+                    )
+                  : Image.asset(
+                      product.imagePath,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
               title: Text(product.name),
               subtitle: Text(product.price),
               trailing: IconButton(
