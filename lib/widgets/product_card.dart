@@ -110,8 +110,8 @@ class ProductCard extends StatelessWidget {
                         ),
                         onPressed: isOffline
                             ? null
-                            : () {
-                                wishlist.toggleWishlist(product);
+                            : () async {
+                                await wishlist.toggleWishlist(product);
                                 _showMessage(
                                   context,
                                   isInWishlist
