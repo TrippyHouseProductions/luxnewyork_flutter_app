@@ -319,7 +319,7 @@ class _MainScreenState extends State<MainScreen> {
     await LocationService.init();
     await LocationService.showLocationNotification();
   }
-
+  
   @override
   void initState() {
     super.initState();
