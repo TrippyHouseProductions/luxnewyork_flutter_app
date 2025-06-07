@@ -1,133 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
-// import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
-// import 'package:luxnewyork_flutter_app/models/product_data.dart';
-
-// class HomeScreen extends StatelessWidget {
-//   const HomeScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final theme = Theme.of(context);
-//     final colorScheme = theme.colorScheme;
-
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-//       child: SingleChildScrollView(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             _buildSearchBar(colorScheme),
-//             _buildCategoryFilter(),
-//             _buildPromotionBanner(theme, colorScheme),
-//             const SizedBox(height: 20),
-//             _buildProductGrid(context),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   // Search Bar
-//   Widget _buildSearchBar(ColorScheme colorScheme) {
-//     return Padding(
-//       padding: const EdgeInsets.only(top: 10, bottom: 16),
-//       child: TextField(
-//         decoration: InputDecoration(
-//           hintText: "Search",
-//           filled: true,
-//           fillColor: colorScheme.surfaceContainerHighest,
-//           prefixIcon: const Icon(Icons.search),
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(10),
-//             borderSide: BorderSide.none,
-//           ),
-//           contentPadding:
-//               const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-//         ),
-//       ),
-//     );
-//   }
-
-//   // Category Filters
-//   Widget _buildCategoryFilter() {
-//     return const Padding(
-//       padding: EdgeInsets.only(bottom: 16),
-//       child: CategoryFilter(),
-//     );
-//   }
-
-//   // Promotion Banner
-//   Widget _buildPromotionBanner(ThemeData theme, ColorScheme colorScheme) {
-//     return Container(
-//       padding: const EdgeInsets.all(16),
-//       decoration: BoxDecoration(
-//         color: colorScheme.primary,
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           Expanded(
-//             child: Text(
-//               "20% discount on new season sunglasses",
-//               style: theme.textTheme.bodyLarge?.copyWith(
-//                 fontWeight: FontWeight.bold,
-//                 color: colorScheme.onPrimary,
-//               ),
-//             ),
-//           ),
-//           TextButton(
-//             onPressed: () {},
-//             child: Text("Shop Now »",
-//                 style: TextStyle(color: colorScheme.onPrimary)),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   // ANCHOR - Use of scrolable list
-//   // Widget _buildProductGrid(BuildContext context) {
-//   //   return GridView.builder(
-//   //     shrinkWrap: true,
-//   //     physics: const BouncingScrollPhysics(), // Adds smooth scrolling effect
-//   //     itemCount: products.length,
-//   //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//   //       crossAxisCount: 2,
-//   //       crossAxisSpacing: 10,
-//   //       mainAxisSpacing: 10,
-//   //       childAspectRatio: 0.6,
-//   //     ),
-//   //     itemBuilder: (context, index) {
-//   //       return ProductCard(product: products[index]);
-//   //     },
-//   //   );
-//   // }
-//   Widget _buildProductGrid(BuildContext context) {
-//     // Determine current orientation
-//     Orientation orientation = MediaQuery.of(context).orientation;
-
-//     // Set crossAxisCount based on orientation
-//     int crossAxisCount = orientation == Orientation.portrait ? 2 : 4;
-
-//     return GridView.builder(
-//       shrinkWrap: true,
-//       physics: const BouncingScrollPhysics(),
-//       itemCount: products.length,
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//         crossAxisCount: crossAxisCount,
-//         crossAxisSpacing: 10,
-//         mainAxisSpacing: 10,
-//         childAspectRatio: 0.6,
-//       ),
-//       itemBuilder: (context, index) {
-//         return ProductCard(product: products[index]);
-//       },
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -138,9 +8,7 @@ import 'package:luxnewyork_flutter_app/widgets/search_bar.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
 import 'package:luxnewyork_flutter_app/widgets/loading_widget.dart';
 
-// ANCHOR models
-
-// ANCHOR services
+// ANCHOR providers
 import 'package:luxnewyork_flutter_app/providers/product_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -178,20 +46,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _refreshProducts() async {
-    await Provider.of<ProductProvider>(context, listen: false).fetchProducts(
-        categoryId: _selectedCategoryId, search: _searchQuery);
+    await Provider.of<ProductProvider>(context, listen: false)
+        .fetchProducts(categoryId: _selectedCategoryId, search: _searchQuery);
   }
 
   void _onCategorySelected(int? categoryId) {
     _selectedCategoryId = categoryId;
-    Provider.of<ProductProvider>(context, listen: false).fetchProducts(
-        categoryId: categoryId, search: _searchQuery);
+    Provider.of<ProductProvider>(context, listen: false)
+        .fetchProducts(categoryId: categoryId, search: _searchQuery);
   }
 
   void _onSearchChanged(String query) {
     _searchQuery = query;
-    Provider.of<ProductProvider>(context, listen: false).fetchProducts(
-        categoryId: _selectedCategoryId, search: query);
+    Provider.of<ProductProvider>(context, listen: false)
+        .fetchProducts(categoryId: _selectedCategoryId, search: query);
   }
 
   @override
@@ -286,8 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: _scrollController,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
-          itemCount:
-              provider.hasMore ? provider.products.length + 1 : provider.products.length,
+          itemCount: provider.products.length +
+              ((provider.isLoadingMore && provider.hasMore) ? 1 : 0),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 10,
