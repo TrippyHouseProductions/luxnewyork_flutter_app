@@ -8,6 +8,7 @@ import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:luxnewyork_flutter_app/screens/cart_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/wishlist_screen.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -15,7 +16,7 @@ class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
 
   void _showSnackbar(BuildContext context, String message, {VoidCallback? onView}) {
-    ScaffoldMessenger.of(context).showSnackBar(
+    showAppSnackBar(
       SnackBar(
         content: Text(message),
         duration: const Duration(seconds: 2),
