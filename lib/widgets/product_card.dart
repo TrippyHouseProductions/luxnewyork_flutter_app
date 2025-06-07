@@ -25,7 +25,8 @@ class ProductCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final wishlist = Provider.of<WishlistProvider>(context);
     final isInWishlist = wishlist.isInWishlist(product.id);
-    final isOffline = Provider.of<ConnectivityProvider>(context).isOffline;
+    final isOffline =
+        Provider.of<ConnectivityProvider>(context).isOffline;
 
     return GestureDetector(
       onTap: () {
