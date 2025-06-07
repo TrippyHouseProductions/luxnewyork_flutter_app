@@ -130,12 +130,16 @@ class ProductDetailScreen extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: isOutOfStock || isOffline
               ? null
-              : () {
+              : () async {
                   if (inCart) {
                     _showSnackbar(context, 'Product is already in the cart');
                   } else {
-                    cart.addItem(product);
-                    _showSnackbar(context, '${product.name} added to cart');
+                    try {
+                      await cart.addItem(product);
+                      _showSnackbar(context, '${product.name} added to cart');
+                    } catch (_) {
+                      _showSnackbar(context, 'Failed to add to cart');
+                    }
                   }
                 },
           icon: const Icon(Icons.shopping_cart),
