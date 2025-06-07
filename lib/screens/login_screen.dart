@@ -5,6 +5,7 @@ import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/signup_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/forgot_password_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -233,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         child: _isLoading
-            ? const CircularProgressIndicator(color: Colors.white)
+            ? const Skeleton(height: 20, width: 20)
             : const Text("Login"),
       ),
     );
