@@ -24,6 +24,20 @@ class StoreProximityService {
         .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(alert: true, badge: true, sound: true);
+
+    // Ensure Android notification channel exists for store alerts
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'store_channel',
+      'Nearby Store Alerts',
+      description: 'Notifications for nearby stores',
+      importance: Importance.high,
+    );
+
+    await _notificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
   }
 
   Future<void> checkNearbyStores() async {
