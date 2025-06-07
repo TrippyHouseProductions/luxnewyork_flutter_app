@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
+import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -152,12 +153,27 @@ class ProductDetailScreen extends StatelessWidget {
         IconButton(
           onPressed: isOffline
               ? null
-              : () {
-                  _showSnackbar(context, '${product.name} added to wishlist');
-                  // TODO: Add to wishlist API logic here
+              : () async {
+                  final wishlist =
+                      Provider.of<WishlistProvider>(context, listen: false);
+                  final isFav = wishlist.isInWishlist(product.id);
+                  await wishlist.toggleWishlist(product);
+                  _showSnackbar(
+                    context,
+                    isFav
+                        ? '${product.name} removed from wishlist'
+                        : '${product.name} added to wishlist',
+                  );
                 },
-          icon: const Icon(Icons.favorite_border),
-          color: colorScheme.primary,
+          icon: Consumer<WishlistProvider>(
+            builder: (_, provider, __) {
+              final fav = provider.isInWishlist(product.id);
+              return Icon(
+                fav ? Icons.favorite : Icons.favorite_border,
+                color: fav ? colorScheme.primary : null,
+              );
+            },
+          ),
         ),
       ],
     );
