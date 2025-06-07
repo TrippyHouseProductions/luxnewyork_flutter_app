@@ -4,30 +4,7 @@ import '../models/product.dart';
 import '../models/category.dart';
 
 class ApiService {
-  static const String baseUrl = "http://10.0.2.2:8000"; // or ngrok URL
-
-  // NOTE fetching all the products from the api
-  // static Future<List<Product>> fetchProducts(String token,
-  //     {int? categoryId}) async {
-  //   final uri = Uri.parse(
-  //       '$baseUrl/api/products${categoryId != null ? '?category_id=$categoryId' : ''}');
-
-  //   final response = await http.get(
-  //     uri,
-  //     headers: {
-  //       'Authorization': 'Bearer $token',
-  //       'Accept': 'application/json',
-  //     },
-  //   );
-
-  //   if (response.statusCode == 200) {
-  //     final body = jsonDecode(response.body);
-  //     final List<dynamic> data = body['data'];
-  //     return data.map((json) => Product.fromJson(json)).toList();
-  //   } else {
-  //     throw Exception('Failed to load products');
-  //   }
-  // }
+  static const String baseUrl = "http://10.0.2.2:8000";
 
   // NOTE fetching all the products from the api
   static Future<List<Product>> fetchProducts(

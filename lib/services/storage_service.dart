@@ -47,10 +47,12 @@ class StorageService {
   /// Save fetched categories locally so they can be used when offline.
   static Future<void> saveCategories(List<Category> categories) async {
     final prefs = await SharedPreferences.getInstance();
-    final encoded = jsonEncode(categories.map((c) => {
-          'id': c.id,
-          'name': c.name,
-        }).toList());
+    final encoded = jsonEncode(categories
+        .map((c) => {
+              'id': c.id,
+              'name': c.name,
+            })
+        .toList());
     await prefs.setString(_categoryCacheKey, encoded);
   }
 
