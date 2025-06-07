@@ -92,54 +92,22 @@ class ProductCard extends StatelessWidget {
                           color: colorScheme.primary,
                         ),
                       ),
-                      // IconButton(
-                      //   icon: Icon(
-                      //     isInWishlist ? Icons.favorite : Icons.favorite_border,
-                      //     color: isInWishlist ? colorScheme.primary : null,
-                      //   ),
-                      //   onPressed: isOffline
-                      //       ? null
-                      //       : () {
-                      //           wishlist.toggleWishlist(product);
-                      //           _showMessage(
-                      //             context,
-                      //             isInWishlist
-                      //                 ? '${product.name} removed from wishlist'
-                      //                 : '${product.name} added to wishlist',
-                      //           );
-                      //         },
-                      // ),
-                      Consumer<ConnectivityProvider>(
-                        builder: (context, connectivity, _) {
-                          // final isOffline = connectivity.isOffline;
-
-                          return IconButton(
-                            icon: Icon(
-                              isInWishlist
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: isInWishlist ? colorScheme.primary : null,
-                            ),
-                            onPressed: isOffline
-                                ? () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text("You're offline"),
-                                        duration: Duration(seconds: 2),
-                                      ),
-                                    );
-                                  }
-                                : () {
-                                    wishlist.toggleWishlist(product);
-                                    _showMessage(
-                                      context,
-                                      isInWishlist
-                                          ? '${product.name} removed from wishlist'
-                                          : '${product.name} added to wishlist',
-                                    );
-                                  },
-                          );
-                        },
+                      IconButton(
+                        icon: Icon(
+                          isInWishlist ? Icons.favorite : Icons.favorite_border,
+                          color: isInWishlist ? colorScheme.primary : null,
+                        ),
+                        onPressed: isOffline
+                            ? null
+                            : () {
+                                wishlist.toggleWishlist(product);
+                                _showMessage(
+                                  context,
+                                  isInWishlist
+                                      ? '${product.name} removed from wishlist'
+                                      : '${product.name} added to wishlist',
+                                );
+                              },
                       ),
                     ],
                   ),
