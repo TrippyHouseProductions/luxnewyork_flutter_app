@@ -94,7 +94,7 @@ class ProductDetailScreen extends StatelessWidget {
               style: theme.textTheme.bodyMedium
                   ?.copyWith(color: colorScheme.onSurfaceVariant)),
           const SizedBox(height: 16),
-          Text('LKR ${product.price}',
+          Text('UAD ${product.price}',
               style: theme.textTheme.headlineMedium
                   ?.copyWith(color: colorScheme.primary)),
           const SizedBox(height: 8),
