@@ -13,21 +13,21 @@ class ProductCardSkeleton extends StatelessWidget {
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Skeleton(
               height: double.infinity,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Skeleton(height: 16),
                 SizedBox(height: 4),
                 Skeleton(height: 14, width: 80),
