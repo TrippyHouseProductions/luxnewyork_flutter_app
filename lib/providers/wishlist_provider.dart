@@ -57,17 +57,20 @@ class WishlistProvider extends ChangeNotifier {
 
     if (index >= 0) {
       final itemId = _wishlistItemIds[product.id];
-      if (itemId != null) {
-        final response = await http.delete(
-          Uri.parse('$apiBaseUrl/api/wishlist/$itemId'),
-          headers: {'Authorization': 'Bearer $token'},
-        );
-        if (response.statusCode == 200 || response.statusCode == 204) {
-          _wishlist.removeAt(index);
-          _wishlistItemIds.remove(product.id);
-        } else {
-          throw Exception('Failed to remove from wishlist');
-        }
+      if (itemId == null) {
+        throw Exception('Failed to remove from wishlist');
+      }
+
+      final response = await http.delete(
+        Uri.parse('$apiBaseUrl/api/wishlist/$itemId'),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        _wishlist.removeAt(index);
+        _wishlistItemIds.remove(product.id);
+      } else {
+        throw Exception('Failed to remove from wishlist');
       }
     } else {
       final response = await http.post(
