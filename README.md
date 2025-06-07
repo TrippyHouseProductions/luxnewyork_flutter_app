@@ -78,6 +78,11 @@ flutter run
 flutter run -d chrome
 ```
 
+### **5. Configure the Backend URL**
+
+The app's API endpoint is defined in `lib/config.dart` as `apiBaseUrl`.
+Edit this constant if your backend runs on a different host or port.
+
 ---
 
 ## **Screenshots(Coming Soon)**
