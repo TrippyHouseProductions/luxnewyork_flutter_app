@@ -55,6 +55,7 @@ import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'providers/theme_provider.dart';
 import 'providers/product_provider.dart';
+import 'providers/connectivity_provider.dart';
 
 import 'services/store_proximity_service.dart';
 
@@ -72,6 +73,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
       ],
       child: const MyApp(),
     ),

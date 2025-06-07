@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
+import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
 
 class ProductCard extends StatelessWidget {
@@ -24,6 +25,8 @@ class ProductCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final wishlist = Provider.of<WishlistProvider>(context);
     final isInWishlist = wishlist.isInWishlist(product.id);
+    final isOffline =
+        Provider.of<ConnectivityProvider>(context).isOffline;
 
     return GestureDetector(
       onTap: () {
@@ -95,15 +98,17 @@ class ProductCard extends StatelessWidget {
                           isInWishlist ? Icons.favorite : Icons.favorite_border,
                           color: isInWishlist ? colorScheme.primary : null,
                         ),
-                        onPressed: () {
-                          wishlist.toggleWishlist(product);
-                          _showMessage(
-                            context,
-                            isInWishlist
-                                ? '${product.name} removed from wishlist'
-                                : '${product.name} added to wishlist',
-                          );
-                        },
+                        onPressed: isOffline
+                            ? null
+                            : () {
+                                wishlist.toggleWishlist(product);
+                                _showMessage(
+                                  context,
+                                  isInWishlist
+                                      ? '${product.name} removed from wishlist'
+                                      : '${product.name} added to wishlist',
+                                );
+                              },
                       ),
                     ],
                   ),
