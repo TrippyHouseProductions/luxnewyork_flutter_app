@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
+import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -120,6 +121,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   Widget _buildActionButtons(BuildContext context, ColorScheme colorScheme) {
     final cart = context.watch<CartProvider>();
+    final isOffline = context.watch<ConnectivityProvider>().isOffline;
     final isOutOfStock = product.stock == 0;
     final inCart = cart.isInCart(product.id);
 
@@ -127,7 +129,7 @@ class ProductDetailScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton.icon(
-          onPressed: isOutOfStock
+          onPressed: isOutOfStock || isOffline
               ? null
               : () {
                   if (inCart) {
@@ -150,10 +152,12 @@ class ProductDetailScreen extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {
-            _showSnackbar(context, '${product.name} added to wishlist');
-            // TODO: Add to wishlist API logic here
-          },
+          onPressed: isOffline
+              ? null
+              : () {
+                  _showSnackbar(context, '${product.name} added to wishlist');
+                  // TODO: Add to wishlist API logic here
+                },
           icon: const Icon(Icons.favorite_border),
           color: colorScheme.primary,
         ),
