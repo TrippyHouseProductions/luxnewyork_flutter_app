@@ -93,20 +93,22 @@ class CartProvider extends ChangeNotifier {
 
     final itemId = _cartItemIds[productId];
 
-    if (itemId != null) {
-      final response = await http.delete(
-        Uri.parse('$apiBaseUrl/api/cart/$itemId'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
-
-      if (response.statusCode != 200 && response.statusCode != 204) {
-        throw Exception('Failed to remove from cart');
-      }
+    if (itemId == null) {
+      throw Exception('Failed to remove from cart');
     }
 
-    _items.removeWhere((item) => item.id == productId);
-    _cartItemIds.remove(productId);
-    notifyListeners();
+    final response = await http.delete(
+      Uri.parse('$apiBaseUrl/api/cart/$itemId'),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      _items.removeWhere((item) => item.id == productId);
+      _cartItemIds.remove(productId);
+      notifyListeners();
+    } else {
+      throw Exception('Failed to remove from cart');
+    }
   }
 
   int get itemCount => _items.length;
