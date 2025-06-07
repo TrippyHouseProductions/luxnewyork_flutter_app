@@ -4,6 +4,7 @@ import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -48,20 +49,17 @@ class ProductDetailScreen extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.network(
-            product.imagePath,
+          child: CachedNetworkImage(
+            imageUrl: product.imagePath,
             fit: BoxFit.cover,
             width: double.infinity,
             height: 300,
-            errorBuilder: (_, __, ___) =>
+            errorWidget: (_, __, ___) =>
                 const Icon(Icons.broken_image, size: 100),
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return const SizedBox(
-                height: 300,
-                child: Skeleton(height: 300),
-              );
-            },
+            placeholder: (context, url) => const SizedBox(
+              height: 300,
+              child: Skeleton(height: 300),
+            ),
           ),
         ),
         if (product.stock == 0)

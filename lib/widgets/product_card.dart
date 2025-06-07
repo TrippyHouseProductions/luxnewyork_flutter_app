@@ -4,6 +4,8 @@ import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/connectivity_provider.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'skeleton.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -56,13 +58,21 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(10)),
-                child: Image(
-                  image: product.imagePath.startsWith('http')
-                      ? NetworkImage(product.imagePath)
-                      : AssetImage(product.imagePath) as ImageProvider,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
+                child: product.imagePath.startsWith('http')
+                    ? CachedNetworkImage(
+                        imageUrl: product.imagePath,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        placeholder: (context, url) =>
+                            const Skeleton(height: double.infinity),
+                        errorWidget: (_, __, ___) =>
+                            const Icon(Icons.broken_image),
+                      )
+                    : Image.asset(
+                        product.imagePath,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
               ),
             ),
             const SizedBox(height: 8),
