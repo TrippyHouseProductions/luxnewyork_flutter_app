@@ -252,7 +252,7 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     }
     setState(() {
       _email = email;
-      if (imagePath != null) {
+      if (imagePath != null && File(imagePath).existsSync()) {
         _profileImage = File(imagePath);
       }
     });
@@ -268,10 +268,13 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     if (email == null) return;
     final dir = await getApplicationDocumentsDirectory();
     final path = '${dir.path}/profile_photo_$email.png';
+    final file = File(path);
+    await picked.saveTo(file.path);
+    await prefs.setString('profile_photo_' + email, file.path);
     await File(picked.path).copy(path);
     await prefs.setString('profile_photo_$email', path);
     setState(() {
-      _profileImage = File(path);
+      _profileImage = file;
     });
   }
 
