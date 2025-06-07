@@ -129,22 +129,19 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:provider/provider.dart';
 
 // ANCHOR widgets
 import 'package:luxnewyork_flutter_app/widgets/category_filter.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card.dart';
 import 'package:luxnewyork_flutter_app/widgets/search_bar.dart';
 import 'package:luxnewyork_flutter_app/widgets/product_card_skeleton.dart';
-import 'package:luxnewyork_flutter_app/widgets/category_filter_skeleton.dart';
+import 'package:luxnewyork_flutter_app/widgets/loading_widget.dart';
 
 // ANCHOR models
-import 'package:luxnewyork_flutter_app/models/product.dart';
 
 // ANCHOR services
-import 'package:luxnewyork_flutter_app/services/api_service.dart';
-import 'package:luxnewyork_flutter_app/services/storage_service.dart';
+import 'package:luxnewyork_flutter_app/providers/product_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -154,58 +151,47 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<Product>> _productFuture;
+  final ScrollController _scrollController = ScrollController();
   int? _selectedCategoryId;
   String _searchQuery = '';
-
-  Future<void> _refreshProducts() async {
-    setState(() {
-      _productFuture = _loadProducts(_selectedCategoryId, _searchQuery);
-    });
-    await _productFuture;
-  }
 
   @override
   void initState() {
     super.initState();
-    _productFuture = _loadProducts(); // initial load
+    final provider = Provider.of<ProductProvider>(context, listen: false);
+    provider.fetchProducts();
+    _scrollController.addListener(_onScroll);
   }
 
-  Future<List<Product>> _loadProducts([int? categoryId, String? search]) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
-    final connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult == ConnectivityResult.none) {
-      // Device offline - load cached products
-      return StorageService.loadProducts();
+  void _onScroll() {
+    final provider = Provider.of<ProductProvider>(context, listen: false);
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      provider.loadMore();
     }
+  }
 
-    try {
-      final products = await ApiService.fetchProducts(token,
-          categoryId: categoryId, search: search ?? _searchQuery);
-      await StorageService.saveProducts(products);
-      return products;
-    } catch (_) {
-      // If API call fails, fall back to cached products if available
-      final cached = await StorageService.loadProducts();
-      if (cached.isNotEmpty) return cached;
-      rethrow;
-    }
+  Future<void> _refreshProducts() async {
+    await Provider.of<ProductProvider>(context, listen: false).fetchProducts(
+        categoryId: _selectedCategoryId, search: _searchQuery);
   }
 
   void _onCategorySelected(int? categoryId) {
-    setState(() {
-      _selectedCategoryId = categoryId;
-      _productFuture = _loadProducts(categoryId, _searchQuery);
-    });
+    _selectedCategoryId = categoryId;
+    Provider.of<ProductProvider>(context, listen: false).fetchProducts(
+        categoryId: categoryId, search: _searchQuery);
   }
 
   void _onSearchChanged(String query) {
-    setState(() {
-      _searchQuery = query;
-      _productFuture = _loadProducts(_selectedCategoryId, query);
-    });
+    _searchQuery = query;
+    Provider.of<ProductProvider>(context, listen: false).fetchProducts(
+        categoryId: _selectedCategoryId, search: query);
   }
 
   @override
@@ -274,10 +260,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Orientation orientation = MediaQuery.of(context).orientation;
     int crossAxisCount = orientation == Orientation.portrait ? 2 : 4;
 
-    return FutureBuilder<List<Product>>(
-      future: _productFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    return Consumer<ProductProvider>(
+      builder: (context, provider, _) {
+        if (provider.isLoading && provider.products.isEmpty) {
           return GridView.builder(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
@@ -290,24 +275,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             itemBuilder: (_, __) => const ProductCardSkeleton(),
           );
-        } else if (snapshot.hasError) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40),
-            child: Center(child: Text("Error: ${snapshot.error}")),
-          );
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+        } else if (provider.products.isEmpty) {
           return const Padding(
             padding: EdgeInsets.symmetric(vertical: 40),
             child: Center(child: Text("No products available.")),
           );
         }
 
-        final products = snapshot.data!;
-
         return GridView.builder(
+          controller: _scrollController,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
-          itemCount: products.length,
+          itemCount:
+              provider.hasMore ? provider.products.length + 1 : provider.products.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 10,
@@ -315,7 +295,11 @@ class _HomeScreenState extends State<HomeScreen> {
             childAspectRatio: 0.6,
           ),
           itemBuilder: (context, index) {
-            return ProductCard(product: products[index]);
+            if (index < provider.products.length) {
+              return ProductCard(product: provider.products[index]);
+            } else {
+              return const LoadingWidget();
+            }
           },
         );
       },
