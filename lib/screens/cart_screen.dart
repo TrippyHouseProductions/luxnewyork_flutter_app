@@ -10,6 +10,7 @@ import '../widgets/connection_error_widget.dart';
 import '../providers/connectivity_provider.dart';
 import '../widgets/empty_state_widget.dart';
 import 'main_screen.dart';
+import 'checkout_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -174,12 +175,27 @@ class _CartScreenState extends State<CartScreen> {
       bottomNavigationBar: !_isLoading && items.isNotEmpty
           ? Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Total: UAD${cartProvider.totalPrice.toStringAsFixed(2)}',
-                textAlign: TextAlign.end,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Total: UAD${cartProvider.totalPrice.toStringAsFixed(2)}',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const CheckoutScreen()),
+                      );
+                    },
+                    child: const Text('Checkout'),
+                  ),
+                ],
               ),
             )
           : null,

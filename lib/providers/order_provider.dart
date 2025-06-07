@@ -38,4 +38,16 @@ class OrderProvider extends ChangeNotifier {
       return null;
     }
   }
+
+  Future<Order?> placeOrder(String fakeInfo) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_token') ?? '';
+
+    try {
+      final order = await ApiService.placeOrder(token, fakeInfo);
+      return order;
+    } catch (_) {
+      return null;
+    }
+  }
 }
