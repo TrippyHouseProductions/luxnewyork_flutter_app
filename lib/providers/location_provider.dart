@@ -1,3 +1,7 @@
+// <<<<<<< codex/add-country-specific-currency-calculation
+// import 'dart:async';
+// =======
+// >>>>>>> main
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
@@ -8,6 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocationProvider extends ChangeNotifier {
   String _currency = 'LKR';
   final double _aedToLkr = 81.45; // basic static exchange rate
+// <<<<<<< codex/add-country-specific-currency-calculation
+//   StreamSubscription<Position>? _positionSub;
+// =======
+// >>>>>>> main
 
   String get currency => _currency;
 
@@ -43,24 +51,72 @@ class LocationProvider extends ChangeNotifier {
       }
 
       final position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.low);
+// <<<<<<< codex/add-country-specific-currency-calculation
+        desiredAccuracy: LocationAccuracy.low,
+      );
+      await _updateCurrency(position);
 
-      final placemarks = await geocoding.placemarkFromCoordinates(
-          position.latitude, position.longitude);
-      if (placemarks.isNotEmpty) {
-        final country = placemarks.first.country?.toLowerCase() ?? '';
-        if (country.contains('sri lanka')) {
-          _currency = 'LKR';
-        } else if (country.contains('united arab emirates') ||
-            country.contains('dubai')) {
-          _currency = 'AED';
-        }
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('currency', _currency);
-        notifyListeners();
-      }
+      _positionSub?.cancel();
+      _positionSub = Geolocator.getPositionStream().listen((pos) {
+        _updateCurrency(pos);
+      });
     } catch (e) {
       debugPrint('Location detection error: $e');
     }
   }
+
+  Future<void> _updateCurrency(Position position) async {
+    try {
+      final placemarks = await geocoding.placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        final country = placemarks.first.country?.toLowerCase() ?? '';
+        String newCurrency = _currency;
+        if (country.contains('sri lanka')) {
+          newCurrency = 'LKR';
+        } else if (country.contains('united arab emirates') ||
+            country.contains('dubai')) {
+          newCurrency = 'AED';
+        }
+        if (newCurrency != _currency) {
+          _currency = newCurrency;
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('currency', _currency);
+          notifyListeners();
+        }
+      }
+    } catch (e) {
+      debugPrint('Location update error: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _positionSub?.cancel();
+    super.dispose();
+  }
+// =======
+//           desiredAccuracy: LocationAccuracy.low);
+
+//       final placemarks = await geocoding.placemarkFromCoordinates(
+//           position.latitude, position.longitude);
+//       if (placemarks.isNotEmpty) {
+//         final country = placemarks.first.country?.toLowerCase() ?? '';
+//         if (country.contains('sri lanka')) {
+//           _currency = 'LKR';
+//         } else if (country.contains('united arab emirates') ||
+//             country.contains('dubai')) {
+//           _currency = 'AED';
+//         }
+//         final prefs = await SharedPreferences.getInstance();
+//         await prefs.setString('currency', _currency);
+//         notifyListeners();
+//       }
+//     } catch (e) {
+//       debugPrint('Location detection error: $e');
+//     }
+//   }
+// >>>>>>> main
 }
