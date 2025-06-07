@@ -16,10 +16,8 @@ class StoreProximityService {
     await _notificationsPlugin.initialize(initSettings);
 
     // Request notification permissions on supported platforms
-    await _notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestPermission();
+    // On Android 13+ (API 33+), notification permission should be requested via the permission_handler package or platform-specific code.
+    // The following line is removed because AndroidFlutterLocalNotificationsPlugin does not have requestPermission().
     await _notificationsPlugin
         .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin>()
