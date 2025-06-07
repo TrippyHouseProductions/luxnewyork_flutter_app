@@ -1,14 +1,79 @@
 [
   {
-    "title": "Our Mission",
+    "title": "(Local Data) Our Mission",
     "description": "Provide high quality eyewear for the modern world."
   },
   {
-    "title": "Our Vision",
+    "title": "(Local Data) Our Vision",
     "description": "Make luxury accessible and educational."
   },
   {
-    "title": "Our Values",
+    "title": "(Local Data) Our Values",
     "description": "Innovation, sustainability, and customer focus."
+  },
+  {
+    "title": "(Local Data) Our Team",
+    "description": "A diverse group of professionals dedicated to excellence."
+  },
+  {
+    "title": "(Local Data) Our History",
+    "description": "Founded in 2020, we have quickly become a leader in eyewear."
+  },
+  {
+    "title": "(Local Data) Our Commitment",
+    "description": "We are committed to quality, sustainability, and customer satisfaction."
+  },
+  {
+    "title": "(Local Data) Contact Us",
+    "description": "Reach out to us for any inquiries or support."
+  },
+  {
+    "title": "(Local Data) FAQs",
+    "description": "Find answers to common questions about our products and services."
+  },
+  {
+    "title": "(Local Data) Careers",
+    "description": "Join our team and help shape the future of eyewear."
+  },
+  {
+    "title": "(Local Data) Sustainability",
+    "description": "Learn about our efforts to reduce environmental impact."
+  },
+  {
+    "title": "(Local Data) Community Engagement",
+    "description": "We actively support local communities through various initiatives."
+  },
+  {
+    "title": "(Local Data) Press Releases",
+    "description": "Stay updated with our latest news and announcements."
+  },
+  {
+    "title": "(Local Data) Partnerships",
+    "description": "We collaborate with various organizations to enhance our impact."
+  },
+  {
+    "title": "(Local Data) Awards and Recognition",
+    "description": "We are proud to be recognized for our contributions to the industry."
+  },
+  {
+    "title": "(Local Data) Customer Testimonials",
+    "description": "Hear from our satisfied customers about their experiences."
+  },
+  {
+    "title": "(Local Data) Product Information",
+    "description": "Detailed information about our eyewear products."
+  },
+  {
+    "title": "(Local Data) Return Policy",
+    "description": "Learn about our hassle-free return process."
+  },
+  {
+    "title": "(Local Data) Shipping Information",
+    "description": "Find out about our shipping options and delivery times."
+  },
+  {
+    "title": "(Local Data) Privacy Policy",
+    "description": "Your privacy is important to us. Read our policy here."
   }
 ]
+
