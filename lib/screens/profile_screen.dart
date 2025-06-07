@@ -171,7 +171,7 @@ class ProfileScreen extends StatelessWidget {
               await prefs.remove('auth_token');
               if (email != null) {
                 await prefs.remove('user_email');
-                await prefs.remove('profile_photo_' + email);
+                await prefs.remove('profile_photo_$email');
               }
 
               // NOTE Navigate to login
@@ -248,7 +248,7 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     final email = prefs.getString('user_email');
     String? imagePath;
     if (email != null) {
-      imagePath = prefs.getString('profile_photo_' + email);
+      imagePath = prefs.getString('profile_photo_$email');
     }
     setState(() {
       _email = email;
@@ -260,7 +260,8 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
-    final picked = await picker.pickImage(source: ImageSource.camera, maxWidth: 600);
+    final picked =
+        await picker.pickImage(source: ImageSource.camera, maxWidth: 600);
     if (picked == null) return;
     final prefs = await SharedPreferences.getInstance();
     final email = prefs.getString('user_email');
@@ -268,7 +269,7 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     final dir = await getApplicationDocumentsDirectory();
     final path = '${dir.path}/profile_photo_$email.png';
     await File(picked.path).copy(path);
-    await prefs.setString('profile_photo_' + email, path);
+    await prefs.setString('profile_photo_$email', path);
     setState(() {
       _profileImage = File(path);
     });
@@ -296,7 +297,9 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
         ),
         const SizedBox(height: 10),
         if (_email != null)
-          Text(_email!, style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+          Text(_email!,
+              style:
+                  textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
       ],
     );
   }
