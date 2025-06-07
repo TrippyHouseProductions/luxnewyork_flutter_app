@@ -72,9 +72,10 @@ class _SignupScreenState extends State<SignupScreen> {
           const SnackBar(content: Text('Registration successful')),
         );
 
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (_) => const MainScreen()),
+          (route) => false,
         );
       } else {
         final responseBody = json.decode(response.body);
