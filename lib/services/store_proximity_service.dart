@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -47,13 +48,13 @@ class StoreProximityService {
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          print('Location permission denied');
+          debugPrint('Location permission denied');
           return;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
-        print('Location permissions are permanently denied');
+        debugPrint('Location permissions are permanently denied');
         return;
       }
 
@@ -67,7 +68,7 @@ class StoreProximityService {
       final nearbyStore = _findNearestStore(position, stores);
 
       if (nearbyStore != null && nearbyStore['distance'] < 10.0) {
-        print(
+        debugPrint(
             'Nearest: ${nearbyStore['storeName']} (${nearbyStore['distance']} km)');
         await _sendNotification(
           title: 'Store Nearby!',
@@ -75,10 +76,10 @@ class StoreProximityService {
               'You are near ${nearbyStore['storeName']} in ${nearbyStore['city']}.',
         );
       } else {
-        print('No store within range');
+        debugPrint('No store within range');
       }
     } catch (e) {
-      print('Error checking nearby stores: $e');
+      debugPrint('Error checking nearby stores: $e');
     }
   }
 

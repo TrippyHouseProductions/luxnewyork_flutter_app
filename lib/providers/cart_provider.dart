@@ -71,7 +71,9 @@ class CartProvider extends ChangeNotifier {
       }
       notifyListeners();
     } else {
-      print('Add to cart failed: ${response.body}');
+      // NOTE Log the error for debugging
+      debugPrint(
+          'Add to cart failed: ${response.statusCode}, ${response.body}');
       throw Exception('Failed to add to cart');
     }
   }

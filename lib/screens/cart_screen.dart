@@ -175,7 +175,7 @@ class _CartScreenState extends State<CartScreen> {
           ? Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Total: \UAD${cartProvider.totalPrice.toStringAsFixed(2)}',
+                'Total: UAD${cartProvider.totalPrice.toStringAsFixed(2)}',
                 textAlign: TextAlign.end,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,

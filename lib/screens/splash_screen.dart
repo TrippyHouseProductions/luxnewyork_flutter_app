@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_screen.dart';
-import 'main_screen.dart'; // Import your main screen
+import 'main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,20 +42,20 @@ class _SplashScreenState extends State<SplashScreen>
 
     if (!mounted) return;
 
-    // NOTE debug code to check the token
-    print('Auth Token: $token');
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Token: $token')),
-    );
+    /// NOTE debug code to check the token
+    debugPrint('Auth Token: $token');
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(content: Text('Token: $token')),
+    // );
 
     if (token != null && token.isNotEmpty) {
-      // Token exists → Navigate to MainScreen
+      /// NOTE Token exists → Navigate to MainScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const MainScreen()),
       );
     } else {
-      // No token → Navigate to LoginScreen
+      /// NOTE No token → Navigate to LoginScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const LoginScreen()),

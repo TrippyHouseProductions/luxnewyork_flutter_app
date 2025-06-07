@@ -1,7 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/order.dart';
 import '../providers/order_provider.dart';
 import '../widgets/list_tile_skeleton.dart';
 
@@ -38,9 +39,10 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (order.status.isNotEmpty) Text('Status: ${order.status}'),
-              if (order.total.isNotEmpty) Text('Total: ${order.total}'),
+              if (order.total.isNotEmpty) Text('Total: UAD${order.total}'),
               const SizedBox(height: 12),
-              const Text('Items:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('Items:',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               ...order.items.map(
                 (item) => Text('${item.quantity} x ${item.name}'),
@@ -101,7 +103,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     leading: const Icon(Icons.receipt_long),
                     title: Text('Order #${order.id}'),
                     subtitle: order.total.isNotEmpty
-                        ? Text('Total: ${order.total}')
+                        ? Text('Total: UAD${order.total}')
                         : null,
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => _showOrderDetails(order.id),
@@ -112,41 +114,6 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           );
         },
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<OrderProvider>(
-      builder: (context, provider, _) {
-        if (provider.isLoading) {
-          return ListView.builder(
-            itemCount: 4,
-            itemBuilder: (_, __) => const ListTileSkeleton(),
-          );
-        }
-
-        if (provider.orders.isEmpty) {
-          return const Center(child: Text('No orders found'));
-        }
-
-        return RefreshIndicator(
-          onRefresh: _refresh,
-          child: ListView.builder(
-            itemCount: provider.orders.length,
-            itemBuilder: (_, index) {
-              final order = provider.orders[index];
-              return ListTile(
-                title: Text('Order #${order.id}'),
-                subtitle: order.total.isNotEmpty
-                    ? Text('Total: ${order.total}')
-                    : null,
-                onTap: () => _showOrderDetails(order.id),
-              );
-            },
-          ),
-        );
-      },
     );
   }
 }

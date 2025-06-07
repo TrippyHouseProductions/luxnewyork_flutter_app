@@ -45,15 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }),
       );
 
-      // NOTE the respose status before getting the api token
-      // if (response.statusCode == 200) {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => const MainScreen()),
-      //   );
-      // }
-
-      // NOTE Check if the response is successful
+      /// NOTE Check if the response is successful
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         final token = responseData['token'];
@@ -65,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
           emailFromServer = user['email'];
         }
 
-        // Store token and user data in shared preferences
+        /// NOTE Store token and user data in shared preferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
         await prefs.setString(
@@ -74,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
           await prefs.setString('user_name', name);
         }
 
-        // Navigate to main screen
+        /// NOTE Navigate to main screen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MainScreen()),

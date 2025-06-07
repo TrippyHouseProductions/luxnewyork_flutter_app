@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -111,15 +113,14 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return WillPopScope(
-      onWillPop: () async {
-        if (_selectedIndex != 0) {
+    return PopScope(
+      canPop: _selectedIndex == 0,
+      onPopInvoked: (didPop) {
+        if (!didPop && _selectedIndex != 0) {
           setState(() {
             _selectedIndex = 0;
           });
-          return false;
         }
-        return true;
       },
       child: Scaffold(
         appBar: AppBar(

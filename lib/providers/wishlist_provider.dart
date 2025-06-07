@@ -42,7 +42,7 @@ class WishlistProvider extends ChangeNotifier {
         throw Exception('Failed to load wishlist: ${response.statusCode}');
       }
     } catch (e) {
-      print('Wishlist load error: $e');
+      debugPrint('Wishlist load error: $e');
       throw Exception('Failed to load wishlist');
     }
   }
