@@ -55,7 +55,28 @@ import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'providers/theme_provider.dart';
 
-void main() {
+import 'services/store_proximity_service.dart';
+
+// void main() {
+//   runApp(
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (_) => CartProvider()),
+//         ChangeNotifierProvider(create: (_) => WishlistProvider()),
+//         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+//       ],
+//       child: const MyApp(),
+//     ),
+//   );
+// }
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final storeService = StoreProximityService();
+  await storeService.init();
+  await storeService.checkNearbyStores(); // optional: do it once on app launch
+
   runApp(
     MultiProvider(
       providers: [
