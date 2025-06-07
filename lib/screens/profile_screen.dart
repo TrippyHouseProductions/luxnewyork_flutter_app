@@ -36,6 +36,7 @@ class ProfileScreen extends StatelessWidget {
               final prefs = await SharedPreferences.getInstance();
               final email = prefs.getString('user_email');
               await prefs.remove('auth_token');
+              await prefs.remove('user_name');
               if (email != null) {
                 await prefs.remove('user_email');
                 await prefs.remove('profile_photo_$email');
@@ -103,6 +104,7 @@ class _UserProfileSection extends StatefulWidget {
 class _UserProfileSectionState extends State<_UserProfileSection> {
   File? _profileImage;
   String? _email;
+  String? _name;
 
   @override
   void initState() {
@@ -113,12 +115,14 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final email = prefs.getString('user_email');
+    final name = prefs.getString('user_name');
     String? imagePath;
     if (email != null) {
       imagePath = prefs.getString('profile_photo_$email');
     }
     setState(() {
       _email = email;
+      _name = name;
       if (imagePath != null && File(imagePath).existsSync()) {
         _profileImage = File(imagePath);
       }
@@ -150,21 +154,32 @@ class _UserProfileSectionState extends State<_UserProfileSection> {
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
-    final imageProvider = _profileImage != null
-        ? FileImage(_profileImage!) as ImageProvider
-        : const AssetImage('assets/images/user.webp');
+    final avatar = _profileImage != null
+        ? CircleAvatar(
+            radius: 50,
+            backgroundColor: colorScheme.primaryContainer,
+            backgroundImage: FileImage(_profileImage!),
+          )
+        : CircleAvatar(
+            radius: 50,
+            backgroundColor: colorScheme.primaryContainer,
+            child: Text(
+              _name != null && _name!.isNotEmpty
+                  ? _name![0].toUpperCase()
+                  : '?',
+              style: textTheme.headlineMedium,
+            ),
+          );
 
     return Column(
       children: [
         GestureDetector(
           onTap: _pickImage,
-          child: CircleAvatar(
-            radius: 50,
-            backgroundColor: colorScheme.primaryContainer,
-            backgroundImage: imageProvider,
-          ),
+          child: avatar,
         ),
         const SizedBox(height: 10),
+        if (_name != null)
+          Text(_name!, style: textTheme.titleMedium),
         if (_email != null)
           Text(_email!,
               style:

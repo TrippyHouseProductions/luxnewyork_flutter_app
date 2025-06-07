@@ -55,11 +55,22 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         final token = responseData['token'];
+        String? name;
+        String? emailFromServer;
+        if (responseData['user'] != null) {
+          final user = responseData['user'];
+          name = user['name'];
+          emailFromServer = user['email'];
+        }
 
-        // Store token in shared preferences
+        // Store token and user data in shared preferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
-        await prefs.setString('user_email', _emailController.text.trim());
+        await prefs.setString('user_email',
+            emailFromServer ?? _emailController.text.trim());
+        if (name != null) {
+          await prefs.setString('user_name', name);
+        }
 
         // Navigate to main screen
         Navigator.pushReplacement(
