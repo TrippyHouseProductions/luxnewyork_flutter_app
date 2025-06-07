@@ -140,7 +140,15 @@ class _CartScreenState extends State<CartScreen> {
               subtitle: Text(product.price),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () => cartProvider.removeItem(product.id),
+                onPressed: () async {
+                  try {
+                    await cartProvider.removeItem(product.id);
+                  } catch (_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Failed to remove item')),
+                    );
+                  }
+                },
               ),
             ),
           );
