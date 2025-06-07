@@ -122,7 +122,6 @@ import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:luxnewyork_flutter_app/providers/wishlist_provider.dart';
 import 'package:luxnewyork_flutter_app/screens/product_detail_screen.dart';
-import 'package:luxnewyork_flutter_app/providers/location_provider.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -144,7 +143,6 @@ class ProductCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final wishlist = Provider.of<WishlistProvider>(context);
     final isInWishlist = wishlist.isInWishlist(product.id);
-    final location = context.watch<LocationProvider>();
 
     return GestureDetector(
       onTap: () {
@@ -206,8 +204,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${location.currency} '
-                        '${location.convertPrice(double.tryParse(product.price) ?? 0).toStringAsFixed(2)}',
+                        product.price,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: colorScheme.primary,
                         ),

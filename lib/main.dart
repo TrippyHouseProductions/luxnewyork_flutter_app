@@ -54,7 +54,6 @@ import 'theme/theme.dart';
 import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'providers/theme_provider.dart';
-import 'providers/location_provider.dart';
 
 void main() {
   runApp(
@@ -63,9 +62,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(
-          create: (_) => LocationProvider()..init(),
-        ),
       ],
       child: const MyApp(),
     ),
