@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:luxnewyork_flutter_app/screens/login_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 import '../config.dart';
@@ -63,7 +62,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
-        await prefs.setString('user_email', emailFromServer ?? _emailController.text.trim());
+        await prefs.setString(
+            'user_email', emailFromServer ?? _emailController.text.trim());
         await prefs.setString('user_name', name ?? _nameController.text.trim());
 
         if (!mounted) return;
