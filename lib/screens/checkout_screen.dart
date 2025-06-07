@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 import '../providers/order_provider.dart';
 import '../providers/cart_provider.dart';
 
@@ -30,13 +31,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     if (order != null) {
       await cartProvider.loadCart();
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
+      showAppSnackBar(
         const SnackBar(content: Text('Order placed successfully')),
       );
       Navigator.pop(context);
     } else {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
+      showAppSnackBar(
         const SnackBar(content: Text('Failed to place order')),
       );
     }

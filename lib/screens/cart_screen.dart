@@ -11,6 +11,7 @@ import '../providers/connectivity_provider.dart';
 import '../widgets/empty_state_widget.dart';
 import 'main_screen.dart';
 import 'checkout_screen.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -161,7 +162,7 @@ class _CartScreenState extends State<CartScreen> {
                   try {
                     await cartProvider.removeItem(product.id);
                   } catch (_) {
-                    ScaffoldMessenger.of(context).showSnackBar(
+                    showAppSnackBar(
                       const SnackBar(content: Text('Failed to remove item')),
                     );
                   }

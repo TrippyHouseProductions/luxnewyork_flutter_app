@@ -13,6 +13,7 @@ import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/theme_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:battery_plus/battery_plus.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -62,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     );
 
     if (level < 15) {
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      showAppSnackBar(snackBar);
     }
   }
 
@@ -91,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
         final message = offline ? 'You are offline' : 'Back online';
         final color = offline ? Colors.red : Colors.green;
 
-        ScaffoldMessenger.of(context).showSnackBar(
+        showAppSnackBar(
           SnackBar(
             content: Text(message),
             backgroundColor: color,

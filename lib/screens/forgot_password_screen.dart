@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 import 'login_screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   void _resetPassword() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
+      showAppSnackBar(
         const SnackBar(content: Text('Password Reset Email Sent!')),
       );
 
