@@ -5,42 +5,31 @@
 ---
 
 <table>
-  <tr>
-    <td style="vertical-align: top; padding-right: 40px;">
-      <h3>📘 Semester 1 Features</h3>
-      <ul>
-        <li>✅ Modern UI</li>
-        <li>✅ Dark Mode Support</li>
-        <li>✅ Login, Register & Forgot Password pages</li>
-        <li>✅ Profile Management page</li>
-        <li>✅ Shopping Cart page</li>
-        <li>✅ Wishlist page</li>
-        <li>✅ Responsive Design</li>
-        <li>✅ Reusable Component Design</li>
-      </ul>
-    </td>
-    <td style="vertical-align: top;">
-      <h3>📗 Semester 2 Features</h3>
-      <ul>
-        <li>✅ Data fetching via API</li>
-        <li>✅ State Management with Provider</li>
-        <li>✅ Sanctum authenticated user authorization</li>
-        <li>✅ Stay logged in until you logout</li>
-        <li>✅ Shared Preference caching</li>
-        <li>✅ Cart & Wishlist functionality</li>
-        <li>✅ Category filtering</li>
-        <li>✅ Search products</li>
-        <li>✅ Store location alerts</li>
-        <li>✅ Offline category/product caching</li>
-        <li>✅ Connectivity status awareness</li>
-        <li>✅ Battery level dark mode suggestion</li>
-        <li>✅ Pull-to-refresh</li>
-        <li>✅ Lazy loading products</li>
-        <li>✅ My Orders screen</li>
-      </ul>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>📘 Semester 1 Feature</th>
+      <th>📗 Semester 2 Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>✅ Modern UI</td><td>✅ Data fetching via API</td></tr>
+    <tr><td>✅ Dark Mode Support</td><td>✅ State Management with Provider</td></tr>
+    <tr><td>✅ Login, Register & Forgot Password pages</td><td>✅ Sanctum authenticated user authorization</td></tr>
+    <tr><td>✅ Profile Management page</td><td>✅ Stay logged in until you logout</td></tr>
+    <tr><td>✅ Shopping Cart page</td><td>✅ Shared Preference caching</td></tr>
+    <tr><td>✅ Wishlist page</td><td>✅ Cart & Wishlist functionality</td></tr>
+    <tr><td>✅ Responsive Design</td><td>✅ Category filtering</td></tr>
+    <tr><td>✅ Reusable Component Design</td><td>✅ Search products</td></tr>
+    <tr><td>–</td><td>✅ Store location alerts</td></tr>
+    <tr><td>–</td><td>✅ Offline category/product caching</td></tr>
+    <tr><td>–</td><td>✅ Connectivity status awareness</td></tr>
+    <tr><td>–</td><td>✅ Battery level dark mode suggestion</td></tr>
+    <tr><td>–</td><td>✅ Pull-to-refresh</td></tr>
+    <tr><td>–</td><td>✅ Lazy loading products</td></tr>
+    <tr><td>–</td><td>✅ My Orders screen</td></tr>
+  </tbody>
 </table>
+
 
 
 ---
