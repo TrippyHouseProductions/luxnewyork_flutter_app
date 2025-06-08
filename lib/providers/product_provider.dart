@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/auth_service.dart';
 
 import '../models/product.dart';
 import '../services/api_service.dart';
@@ -34,8 +34,7 @@ class ProductProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
@@ -77,8 +76,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
     _page++;
 
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
     try {
       final fetched = await ApiService.fetchProducts(
         token,

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/models/product.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/auth_service.dart';
 import '../config.dart';
 
 class WishlistProvider extends ChangeNotifier {
@@ -15,8 +15,7 @@ class WishlistProvider extends ChangeNotifier {
 
   /// NOTE Fetch wishlist from API based on logged-in user (GET)
   Future<void> loadWishlist() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     try {
       final response = await http.get(
@@ -50,8 +49,7 @@ class WishlistProvider extends ChangeNotifier {
 
   /// NOTE Toggle wishlist status of [product] and update backend (POST/DELETE)
   Future<void> toggleWishlist(Product product) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     final index = _wishlist.indexWhere((item) => item.id == product.id);
 
