@@ -1,39 +1,34 @@
-## **LuxNewYork Flutter App**
+## **LUXNEWYORK Flutter App**
 
 ### **A modern eCommerce app for conceptual luxury eyewear company. Built with Flutter.**
 
 ---
 
-## **Features (SEMESTER 1)**
+## **Features Implemented**
 
-✅ **Modern UI**
-✅ **Dark Mode Support**
-✅ **Login, Register & Forgot Password pages**
-✅ **Profile Management page**
-✅ **Shopping Cart page**
-✅ **Wishlist page**
-✅ **Profile Management page**
-✅ **Responsive Design**
-✅ **Reusable Component Design**
+| Semester 1                          | Status | Semester 2                          | Status |
+|----------------------------------------|--------|----------------------------------------|--------|
+| Modern UI                              |   ✅   | Data fetching via API                  |   ✅   |
+| Dark Mode Support                      |   ✅   | State Management with Provider         |   ✅   |
+| Login, Register & Forgot Password      |   ✅   | Sanctum authenticated user authorization|  ✅   |
+| Profile Management page                |   ✅   | Stay logged in until you logout        |   ✅   |
+| Shopping Cart page                     |   ✅   | Shared Preference caching              |   ✅   |
+| Wishlist page                          |   ✅   | Cart & Wishlist functionality          |   ✅   |
+| Responsive Design                      |   ✅   | Category filtering                     |   ✅   |
+| Reusable Component Design              |   ✅   | Search products                        |   ✅   |
+| –                                      |   –    | Store location alerts                  |   ✅   |
+| –                                      |   –    | Offline category/product caching       |   ✅   |
+| –                                      |   –    | Connectivity status awareness          |   ✅   |
+| –                                      |   –    | Battery level dark mode suggestion     |   ✅   |
+| –                                      |   –    | Pull-to-refresh                        |   ✅   |
+| –                                      |   –    | Lazy loading products                  |   ✅   |
+| –                                      |   –    | My Orders screen                       |   ✅   |
 
----
 
-## **Features (SEMESTER 2)**
 
-✅ **Data fetching via API**
-✅ **State Management with Provider**
-✅ **Sanctum authenticated user authorization**
-✅ **Stay logged in once logged in until you logout**
-✅ **Data Caching using Shared Preference package**
-✅ **Shopping Cart functionality**
-✅ **Wishlist functionalty**
-✅ **Category filtering**
-✅ **Search products funnctionality**
-✅ **Location-based store notifications**
-✅ **Offline product & category caching for zero connectivity**
-✅ **Connectivity status awareness with offline/online alerts**
-✅ **Battery level checks to suggest dark mode**
-✅ **Pull-to-refresh lists for quick refresh**
+
+
+
 
 ---
 
@@ -85,7 +80,86 @@ Edit this constant if your backend runs on a different host or port.
 
 ---
 
-## **Screenshots(Coming Soon)**
+## **Screenshots**
+
+### Dark Mode (SEMESTER 1)
+
+<table>
+  <tr>
+    <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%281%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2814%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2815%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%282%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%286%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%287%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%288%29.png" width="200"/></td>
+    <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29.png" width="200"/></td>
+  </tr>
+</table>
+
+### Landscape Mode (SEMESTER 1)
+<table>
+  <tr>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png" width="200"/></td>
+    <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
+  </tr>
+</table>
+
+### Light Mode (SEMESTER 1)
+<table>
+  <tr>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%288%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%289%29.png" width="200"/></td>
+    <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
+  </tr>
+</table>
+
+### Testing (SEMESTER 1)
+<table>
+  <tr>
+    <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2810%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2811%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2812%29.png" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%283%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%284%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%285%29.png" width="200"/></td>
+    <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%289%29.png" width="200"/></td>
+  </tr>
+</table>
 
 ---
 
