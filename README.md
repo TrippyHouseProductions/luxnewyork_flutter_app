@@ -4,52 +4,44 @@
 
 ---
 
-## **Features**
-
 <table>
   <tr>
-    <td>
-  
-  ### **Semester 1**
-  
-  | Feature | Status |
-  | --- | --- |
-  | Modern UI | ✅ |
-  | Dark Mode Support | ✅ |
-  | Login, Register & Forgot Password pages | ✅ |
-  | Profile Management page | ✅ |
-  | Shopping Cart page | ✅ |
-  | Wishlist page | ✅ |
-  | Responsive Design | ✅ |
-  | Reusable Component Design | ✅ |
-      
+    <td style="vertical-align: top; padding-right: 40px;">
+      <h3>📘 Semester 1 Features</h3>
+      <ul>
+        <li>✅ Modern UI</li>
+        <li>✅ Dark Mode Support</li>
+        <li>✅ Login, Register & Forgot Password pages</li>
+        <li>✅ Profile Management page</li>
+        <li>✅ Shopping Cart page</li>
+        <li>✅ Wishlist page</li>
+        <li>✅ Responsive Design</li>
+        <li>✅ Reusable Component Design</li>
+      </ul>
     </td>
-    <td>
-    
-  ### **Semester 2**
-  
-  | Feature | Status |
-  | --- | --- |
-  | Data fetching via API | ✅ |
-  | State Management with Provider | ✅ |
-  | Sanctum authenticated user authorization | ✅ |
-  | Stay logged in until you logout | ✅ |
-  | Data caching using Shared Preference package | ✅ |
-  | Shopping Cart functionality | ✅ |
-  | Wishlist functionality | ✅ |
-  | Category filtering | ✅ |
-  | Search products functionality | ✅ |
-  | Location-based store notifications | ✅ |
-  | Offline product & category caching for zero connectivity | ✅ |
-  | Connectivity status awareness with offline/online alerts | ✅ |
-  | Battery level checks to suggest dark mode | ✅ |
-  | Pull-to-refresh lists for quick refresh | ✅ |
-  | Product lazy loading/infinite scroll | ✅ |
-  | My Orders screen for order tracking | ✅ |
-  
+    <td style="vertical-align: top;">
+      <h3>📗 Semester 2 Features</h3>
+      <ul>
+        <li>✅ Data fetching via API</li>
+        <li>✅ State Management with Provider</li>
+        <li>✅ Sanctum authenticated user authorization</li>
+        <li>✅ Stay logged in until you logout</li>
+        <li>✅ Shared Preference caching</li>
+        <li>✅ Cart & Wishlist functionality</li>
+        <li>✅ Category filtering</li>
+        <li>✅ Search products</li>
+        <li>✅ Store location alerts</li>
+        <li>✅ Offline category/product caching</li>
+        <li>✅ Connectivity status awareness</li>
+        <li>✅ Battery level dark mode suggestion</li>
+        <li>✅ Pull-to-refresh</li>
+        <li>✅ Lazy loading products</li>
+        <li>✅ My Orders screen</li>
+      </ul>
     </td>
   </tr>
 </table>
+
 
 ---
 
