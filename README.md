@@ -4,41 +4,52 @@
 
 ---
 
-## **Features (SEMESTER 1)**
+## **Features**
+
+<table>
+  <tr>
+    <td>
+
+### **Semester 1**
 
 | Feature | Status |
 | --- | --- |
-| Modern UI | ✓ |
-| Dark Mode Support | ✓ |
-| Login, Register & Forgot Password pages | ✓ |
-| Profile Management page | ✓ |
-| Shopping Cart page | ✓ |
-| Wishlist page | ✓ |
-| Responsive Design | ✓ |
-| Reusable Component Design | ✓ |
+| Modern UI | ✅ |
+| Dark Mode Support | ✅ |
+| Login, Register & Forgot Password pages | ✅ |
+| Profile Management page | ✅ |
+| Shopping Cart page | ✅ |
+| Wishlist page | ✅ |
+| Responsive Design | ✅ |
+| Reusable Component Design | ✅ |
 
----
+    </td>
+    <td>
 
-## **Features (SEMESTER 2)**
+### **Semester 2**
 
 | Feature | Status |
 | --- | --- |
-| Data fetching via API | ✓ |
-| State Management with Provider | ✓ |
-| Sanctum authenticated user authorization | ✓ |
-| Stay logged in until you logout | ✓ |
-| Data caching using Shared Preference package | ✓ |
-| Shopping Cart functionality | ✓ |
-| Wishlist functionality | ✓ |
-| Category filtering | ✓ |
-| Search products functionality | ✓ |
-| Location-based store notifications | ✓ |
-| Offline product & category caching for zero connectivity | ✓ |
-| Connectivity status awareness with offline/online alerts | ✓ |
-| Battery level checks to suggest dark mode | ✓ |
-| Pull-to-refresh lists for quick refresh | ✓ |
-| Product lazy loading/infinite scroll | ✓ |
-| My Orders screen for order tracking | ✓ |
+| Data fetching via API | ✅ |
+| State Management with Provider | ✅ |
+| Sanctum authenticated user authorization | ✅ |
+| Stay logged in until you logout | ✅ |
+| Data caching using Shared Preference package | ✅ |
+| Shopping Cart functionality | ✅ |
+| Wishlist functionality | ✅ |
+| Category filtering | ✅ |
+| Search products functionality | ✅ |
+| Location-based store notifications | ✅ |
+| Offline product & category caching for zero connectivity | ✅ |
+| Connectivity status awareness with offline/online alerts | ✅ |
+| Battery level checks to suggest dark mode | ✅ |
+| Pull-to-refresh lists for quick refresh | ✅ |
+| Product lazy loading/infinite scroll | ✅ |
+| My Orders screen for order tracking | ✅ |
+
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -93,6 +104,7 @@ Edit this constant if your backend runs on a different host or port.
 ## **Screenshots**
 
 ### Dark Mode (SEMESTER 1)
+
 <table>
   <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
