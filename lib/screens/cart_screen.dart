@@ -9,8 +9,8 @@ import '../widgets/skeleton.dart';
 import '../widgets/connection_error_widget.dart';
 import '../providers/connectivity_provider.dart';
 import '../widgets/empty_state_widget.dart';
-import 'main_screen.dart';
 import 'checkout_screen.dart';
+import 'package:luxnewyork_flutter_app/providers/navigation_provider.dart';
 import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
 
 class CartScreen extends StatefulWidget {
@@ -116,10 +116,7 @@ class _CartScreenState extends State<CartScreen> {
               message: 'Your cart is empty.',
               actionText: 'Shop Now',
               onAction: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MainScreen()),
-                );
+                context.read<NavigationProvider>().setIndex(0);
               },
               icon: Icons.shopping_bag_outlined,
             ),

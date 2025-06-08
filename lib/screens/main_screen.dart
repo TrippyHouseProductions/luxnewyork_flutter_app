@@ -11,6 +11,7 @@ import 'package:luxnewyork_flutter_app/screens/my_orders_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:luxnewyork_flutter_app/providers/cart_provider.dart';
 import 'package:luxnewyork_flutter_app/providers/theme_provider.dart';
+import 'package:luxnewyork_flutter_app/providers/navigation_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:battery_plus/battery_plus.dart';
 import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
@@ -23,7 +24,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
   late StreamSubscription<List<ConnectivityResult>> _connectivitySub;
   bool _isOffline = false;
   final Battery _battery = Battery();
@@ -36,9 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    context.read<NavigationProvider>().setIndex(index);
   }
 
   Future<void> _checkBattery() async {
@@ -114,13 +112,13 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    final selectedIndex = context.watch<NavigationProvider>().index;
+
     return PopScope(
-      canPop: _selectedIndex == 0,
+      canPop: selectedIndex == 0,
       onPopInvoked: (didPop) {
-        if (!didPop && _selectedIndex != 0) {
-          setState(() {
-            _selectedIndex = 0;
-          });
+        if (!didPop && selectedIndex != 0) {
+          context.read<NavigationProvider>().setIndex(0);
         }
       },
       child: Scaffold(
@@ -142,14 +140,14 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
         body: IndexedStack(
-          index: _selectedIndex,
+          index: selectedIndex,
           children: _screens,
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: colorScheme.surface,
           selectedItemColor: colorScheme.primary,
           unselectedItemColor: colorScheme.onSurfaceVariant,
-          currentIndex: _selectedIndex,
+          currentIndex: selectedIndex,
           onTap: _onItemTapped,
           items: [
             const BottomNavigationBarItem(

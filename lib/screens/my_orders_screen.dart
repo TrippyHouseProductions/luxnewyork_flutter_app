@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../providers/order_provider.dart';
 import '../widgets/list_tile_skeleton.dart';
 import '../widgets/empty_state_widget.dart';
-import 'main_screen.dart';
+import 'package:luxnewyork_flutter_app/providers/navigation_provider.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   const MyOrdersScreen({super.key});
@@ -95,10 +95,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     message: 'No orders found.',
                     actionText: 'Shop Now',
                     onAction: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => const MainScreen()),
-                      );
+                      context.read<NavigationProvider>().setIndex(0);
                     },
                     icon: Icons.receipt_long,
                   ),
