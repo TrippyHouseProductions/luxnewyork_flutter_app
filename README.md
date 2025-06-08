@@ -1,4 +1,4 @@
-## **LuxNewYork Flutter App**
+## **LUXNEWYORK Flutter App**
 
 ### **A modern eCommerce app for conceptual luxury eyewear company. Built with Flutter.**
 
@@ -103,21 +103,18 @@ Edit this constant if your backend runs on a different host or port.
 
 ## **Screenshots**
 
-### Dark Mode
+### Dark Mode (SEMESTER 1)
+
 <table>
   <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%281%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2814%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2815%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%282%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%286%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%287%29.png" width="200"/></td>
   </tr>
@@ -127,41 +124,33 @@ Edit this constant if your backend runs on a different host or port.
   </tr>
 </table>
 
-### Landscape Mode
+### Landscape Mode (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png" width="200"/></td>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png" width="200"/></td>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
   </tr>
 </table>
 
-### Light Mode
+### Light Mode (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png" width="200"/></td>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png" width="200"/></td>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%288%29.png" width="200"/></td>
   </tr>
@@ -171,29 +160,23 @@ Edit this constant if your backend runs on a different host or port.
   </tr>
 </table>
 
-### Testing
+### Testing (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%283%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%284%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2810%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2811%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2812%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%283%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%284%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%285%29.png" width="200"/></td>
     <td><img src="Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%289%29.png" width="200"/></td>
   </tr>
