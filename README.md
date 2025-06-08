@@ -4,6 +4,8 @@
 
 ---
 
+## **Features Implemented**
+
 | Semester 1                          | Status | Semester 2                          | Status |
 |----------------------------------------|--------|----------------------------------------|--------|
 | Modern UI                              |   ✅   | Data fetching via API                  |   ✅   |
