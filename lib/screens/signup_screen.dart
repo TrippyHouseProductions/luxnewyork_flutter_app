@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:luxnewyork_flutter_app/screens/main_screen.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
 import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
+import 'package:luxnewyork_flutter_app/utils/validators.dart';
 import '../config.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -185,10 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
             if (value == null || value.isEmpty) {
               return "Please enter your email";
             }
-            // email validation //ANCHOR - Use of email validation
-            final emailRegex =
-                RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-            if (!emailRegex.hasMatch(value)) {
+            if (!isValidEmail(value)) {
               return "Enter a valid email";
             }
             return null;

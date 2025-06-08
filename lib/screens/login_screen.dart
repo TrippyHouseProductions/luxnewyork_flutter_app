@@ -6,6 +6,7 @@ import 'package:luxnewyork_flutter_app/screens/signup_screen.dart';
 import 'package:luxnewyork_flutter_app/screens/forgot_password_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:luxnewyork_flutter_app/widgets/skeleton.dart';
+import 'package:luxnewyork_flutter_app/utils/validators.dart';
 import '../config.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -166,9 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (value == null || value.isEmpty) {
               return "Please enter your email";
             }
-            final emailRegex =
-                RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-            if (!emailRegex.hasMatch(value)) return "Enter a valid email";
+            if (!isValidEmail(value)) return "Enter a valid email";
             return null;
           },
         ),
