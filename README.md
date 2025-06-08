@@ -98,15 +98,11 @@ Edit this constant if your backend runs on a different host or port.
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%281%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2814%29.png" width="200"/></td>
   </tr>
   <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2815%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%282%29.png" width="200"/></td>
-  </tr>
-  <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%286%29.png" width="200"/></td>
     <td><img src="Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%287%29.png" width="200"/></td>
   </tr>
