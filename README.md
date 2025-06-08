@@ -10,29 +10,18 @@
 | Dark Mode Support                      |        | State Management with Provider         |        |
 | Login, Register & Forgot Password      |        | Sanctum authenticated user authorization|       |
 | Profile Management page                |        | Stay logged in until you logout        |        |
-|                                        | ✅     |                                        | ✅     |
 | Shopping Cart page                     |        | Shared Preference caching              |        |
-|                                        | ✅     |                                        | ✅     |
 | Wishlist page                          |        | Cart & Wishlist functionality          |        |
 |                                        | ✅     |                                        | ✅     |
 | Responsive Design                      |        | Category filtering                     |        |
-|                                        | ✅     |                                        | ✅     |
 | Reusable Component Design              |        | Search products                        |        |
-|                                        | ✅     |                                        | ✅     |
 | –                                      |        | Store location alerts                  |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | Offline category/product caching       |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | Connectivity status awareness          |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | Battery level dark mode suggestion     |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | Pull-to-refresh                        |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | Lazy loading products                  |        |
-|                                        | –      |                                        | ✅     |
 | –                                      |        | My Orders screen                       |        |
-|                                        | –      |                                        | ✅     |
 
 
 
