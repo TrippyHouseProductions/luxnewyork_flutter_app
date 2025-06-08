@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/auth_service.dart';
 
 import '../models/order.dart';
 import '../services/api_service.dart';
@@ -15,8 +15,7 @@ class OrderProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     try {
       _orders = await ApiService.fetchOrders(token);
@@ -29,8 +28,7 @@ class OrderProvider extends ChangeNotifier {
   }
 
   Future<Order?> fetchOrderDetail(int id) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     try {
       return await ApiService.fetchOrderDetail(token, id);
@@ -40,8 +38,7 @@ class OrderProvider extends ChangeNotifier {
   }
 
   Future<Order?> placeOrder(String fakeInfo) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     try {
       final order = await ApiService.placeOrder(token, fakeInfo);

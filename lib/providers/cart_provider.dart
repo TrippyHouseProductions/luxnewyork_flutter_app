@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/auth_service.dart';
 import '../models/product.dart';
 import '../config.dart';
 
@@ -13,8 +13,7 @@ class CartProvider extends ChangeNotifier {
 
   /// NOTE Load cart items for the logged-in user from the API
   Future<void> loadCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     try {
       final response = await http.get(
@@ -48,8 +47,7 @@ class CartProvider extends ChangeNotifier {
   Future<void> addItem(Product product) async {
     if (isInCart(product.id)) return;
 
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     final response = await http.post(
       Uri.parse('$apiBaseUrl/api/cart'),
@@ -88,8 +86,7 @@ class CartProvider extends ChangeNotifier {
   /// NOTE Remove a product from the cart via the API
   /// NOTE If the product is not in the cart, it does nothing.
   Future<void> removeItem(int productId) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('auth_token') ?? '';
+    final token = await AuthService.getAuthToken();
 
     final itemId = _cartItemIds[productId];
 
