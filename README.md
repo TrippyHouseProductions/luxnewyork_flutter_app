@@ -12,7 +12,6 @@
 | Profile Management page                |        | Stay logged in until you logout        |        |
 | Shopping Cart page                     |        | Shared Preference caching              |        |
 | Wishlist page                          |        | Cart & Wishlist functionality          |        |
-|                                        | ✅     |                                        | ✅     |
 | Responsive Design                      |        | Category filtering                     |        |
 | Reusable Component Design              |        | Search products                        |        |
 | –                                      |        | Store location alerts                  |        |
