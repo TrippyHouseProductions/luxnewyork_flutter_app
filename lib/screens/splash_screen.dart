@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
     if (!mounted) return;
 
     /// NOTE debug code to check the token
-    debugPrint('Auth Token: $token');
+    // print('Auth Token: $token');
     // ScaffoldMessenger.of(context).showSnackBar(
     //   SnackBar(content: Text('Token: $token')),
     // );
