@@ -16,28 +16,20 @@
   <tbody>
     <tr><td>Modern UI</td><td></td><td>Data fetching via API</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Dark Mode Support</td><td></td><td>State Management with Provider</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Login, Register & Forgot Password pages</td><td></td><td>Sanctum authenticated user authorization</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Profile Management page</td><td></td><td>Stay logged in until you logout</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Shopping Cart page</td><td></td><td>Shared Preference caching</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Wishlist page</td><td></td><td>Cart & Wishlist functionality</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Responsive Design</td><td></td><td>Category filtering</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>Reusable Component Design</td><td></td><td>Search products</td><td></td></tr>
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Store location alerts</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
 
