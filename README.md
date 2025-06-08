@@ -6,8 +6,8 @@
 
 | 📘 Semester 1                          | Status | 📗 Semester 2                          | Status |
 |----------------------------------------|--------|----------------------------------------|--------|
-| Modern UI                              |        | Data fetching via API                  |        |
-|                                        | ✅     |                                        | ✅     |
+| Modern UI                              |   ✅   | Data fetching via API                  |   ✅   |
+|                                        |        |                                        |        |
 | Dark Mode Support                      |        | State Management with Provider         |        |
 |                                        | ✅     |                                        | ✅     |
 | Login, Register & Forgot Password      |        | Sanctum authenticated user authorization|       |
