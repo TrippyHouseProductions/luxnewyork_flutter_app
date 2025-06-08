@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxnewyork_flutter_app/utils/snackbar_service.dart';
+import 'package:luxnewyork_flutter_app/utils/validators.dart';
 import 'login_screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -85,9 +86,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           keyboardType: TextInputType.emailAddress,
           validator: (value) {
             if (value!.isEmpty) return "Please enter your email";
-            final emailRegex =
-                RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-            return emailRegex.hasMatch(value) ? null : "Enter a valid email";
+            return isValidEmail(value) ? null : "Enter a valid email";
           },
         ),
         const SizedBox(height: 20),
