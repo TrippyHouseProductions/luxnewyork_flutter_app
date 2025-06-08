@@ -1,4 +1,4 @@
-## **LuxNewYork Flutter App**
+## **LUXNEWYORK Flutter App**
 
 ### **A modern eCommerce app for conceptual luxury eyewear company. Built with Flutter.**
 
@@ -8,14 +8,14 @@
 
 | Feature | Status |
 | --- | --- |
-| Modern UI | ✅ |
-| Dark Mode Support | ✅ |
-| Login, Register & Forgot Password pages | ✅ |
-| Profile Management page | ✅ |
-| Shopping Cart page | ✅ |
-| Wishlist page | ✅ |
-| Responsive Design | ✅ |
-| Reusable Component Design | ✅ |
+| Modern UI | ✓ |
+| Dark Mode Support | ✓ |
+| Login, Register & Forgot Password pages | ✓ |
+| Profile Management page | ✓ |
+| Shopping Cart page | ✓ |
+| Wishlist page | ✓ |
+| Responsive Design | ✓ |
+| Reusable Component Design | ✓ |
 
 ---
 
