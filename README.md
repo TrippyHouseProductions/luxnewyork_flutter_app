@@ -32,22 +32,16 @@
     <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
     <tr><td>–</td><td></td><td>Store location alerts</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Offline category/product caching</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Connectivity status awareness</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Battery level dark mode suggestion</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Pull-to-refresh</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>Lazy loading products</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-
     <tr><td>–</td><td></td><td>My Orders screen</td><td></td></tr>
     <tr><td></td><td>–</td><td></td><td>✅</td></tr>
   </tbody>
