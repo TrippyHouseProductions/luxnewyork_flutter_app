@@ -4,48 +4,39 @@
 
 ---
 
-<table border="1" cellpadding="8" cellspacing="0">
-  <thead>
-    <tr>
-      <th>📘 Semester 1</th>
-      <th>Status</th>
-      <th>📗 Semester 2</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Modern UI</td><td></td><td>Data fetching via API</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Dark Mode Support</td><td></td><td>State Management with Provider</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Login, Register & Forgot Password pages</td><td></td><td>Sanctum authenticated user authorization</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Profile Management page</td><td></td><td>Stay logged in until you logout</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Shopping Cart page</td><td></td><td>Shared Preference caching</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Wishlist page</td><td></td><td>Cart & Wishlist functionality</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Responsive Design</td><td></td><td>Category filtering</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>Reusable Component Design</td><td></td><td>Search products</td><td></td></tr>
-    <tr><td></td><td>✅</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Store location alerts</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Offline category/product caching</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Connectivity status awareness</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Battery level dark mode suggestion</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Pull-to-refresh</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>Lazy loading products</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-    <tr><td>–</td><td></td><td>My Orders screen</td><td></td></tr>
-    <tr><td></td><td>–</td><td></td><td>✅</td></tr>
-  </tbody>
-</table>
+| 📘 Semester 1                          | Status | 📗 Semester 2                          | Status |
+|----------------------------------------|--------|----------------------------------------|--------|
+| Modern UI                              |        | Data fetching via API                  |        |
+|                                        | ✅     |                                        | ✅     |
+| Dark Mode Support                      |        | State Management with Provider         |        |
+|                                        | ✅     |                                        | ✅     |
+| Login, Register & Forgot Password      |        | Sanctum authenticated user authorization|       |
+|                                        | ✅     |                                        | ✅     |
+| Profile Management page                |        | Stay logged in until you logout        |        |
+|                                        | ✅     |                                        | ✅     |
+| Shopping Cart page                     |        | Shared Preference caching              |        |
+|                                        | ✅     |                                        | ✅     |
+| Wishlist page                          |        | Cart & Wishlist functionality          |        |
+|                                        | ✅     |                                        | ✅     |
+| Responsive Design                      |        | Category filtering                     |        |
+|                                        | ✅     |                                        | ✅     |
+| Reusable Component Design              |        | Search products                        |        |
+|                                        | ✅     |                                        | ✅     |
+| –                                      |        | Store location alerts                  |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | Offline category/product caching       |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | Connectivity status awareness          |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | Battery level dark mode suggestion     |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | Pull-to-refresh                        |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | Lazy loading products                  |        |
+|                                        | –      |                                        | ✅     |
+| –                                      |        | My Orders screen                       |        |
+|                                        | –      |                                        | ✅     |
+
 
 
 
