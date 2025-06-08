@@ -6,34 +6,39 @@
 
 ## **Features (SEMESTER 1)**
 
-✅ **Modern UI**
-✅ **Dark Mode Support**
-✅ **Login, Register & Forgot Password pages**
-✅ **Profile Management page**
-✅ **Shopping Cart page**
-✅ **Wishlist page**
-✅ **Profile Management page**
-✅ **Responsive Design**
-✅ **Reusable Component Design**
+| Feature | Status |
+| --- | --- |
+| Modern UI | ✅ |
+| Dark Mode Support | ✅ |
+| Login, Register & Forgot Password pages | ✅ |
+| Profile Management page | ✅ |
+| Shopping Cart page | ✅ |
+| Wishlist page | ✅ |
+| Responsive Design | ✅ |
+| Reusable Component Design | ✅ |
 
 ---
 
 ## **Features (SEMESTER 2)**
 
-✅ **Data fetching via API**
-✅ **State Management with Provider**
-✅ **Sanctum authenticated user authorization**
-✅ **Stay logged in once logged in until you logout**
-✅ **Data Caching using Shared Preference package**
-✅ **Shopping Cart functionality**
-✅ **Wishlist functionalty**
-✅ **Category filtering**
-✅ **Search products funnctionality**
-✅ **Location-based store notifications**
-✅ **Offline product & category caching for zero connectivity**
-✅ **Connectivity status awareness with offline/online alerts**
-✅ **Battery level checks to suggest dark mode**
-✅ **Pull-to-refresh lists for quick refresh**
+| Feature | Status |
+| --- | --- |
+| Data fetching via API | ✅ |
+| State Management with Provider | ✅ |
+| Sanctum authenticated user authorization | ✅ |
+| Stay logged in until you logout | ✅ |
+| Data caching using Shared Preference package | ✅ |
+| Shopping Cart functionality | ✅ |
+| Wishlist functionality | ✅ |
+| Category filtering | ✅ |
+| Search products functionality | ✅ |
+| Location-based store notifications | ✅ |
+| Offline product & category caching for zero connectivity | ✅ |
+| Connectivity status awareness with offline/online alerts | ✅ |
+| Battery level checks to suggest dark mode | ✅ |
+| Pull-to-refresh lists for quick refresh | ✅ |
+| Product lazy loading/infinite scroll | ✅ |
+| My Orders screen for order tracking | ✅ |
 
 ---
 
@@ -85,7 +90,54 @@ Edit this constant if your backend runs on a different host or port.
 
 ---
 
-## **Screenshots(Coming Soon)**
+## **Screenshots**
+### Dark Mode
+![localhost_49820_(Pixel 7) (2).png](Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png)
+![localhost_49820_(Pixel 7).png](Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29.png)
+![localhost_57953_(Pixel 7) (1).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%281%29.png)
+![localhost_57953_(Pixel 7) (14).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2814%29.png)
+![localhost_57953_(Pixel 7) (15).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%2815%29.png)
+![localhost_57953_(Pixel 7) (2).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%282%29.png)
+![localhost_57953_(Pixel 7) (6).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%286%29.png)
+![localhost_57953_(Pixel 7) (7).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%287%29.png)
+![localhost_57953_(Pixel 7) (8).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29%20%288%29.png)
+![localhost_57953_(Pixel 7).png](Screenshots/Dark%20Mode/localhost_57953_%28Pixel%207%29.png)
+
+### Landscape Mode
+![localhost_49820_(Pixel 7) (1).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png)
+![localhost_49820_(Pixel 7) (2).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png)
+![localhost_49820_(Pixel 7) (3).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png)
+![localhost_49820_(Pixel 7) (4).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png)
+![localhost_49820_(Pixel 7) (5).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png)
+![localhost_49820_(Pixel 7) (6).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png)
+![localhost_49820_(Pixel 7) (7).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png)
+![localhost_49820_(Pixel 7).png](Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29.png)
+
+### Light Mode
+![localhost_49820_(Pixel 7) (1).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png)
+![localhost_49820_(Pixel 7) (2).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png)
+![localhost_49820_(Pixel 7) (3).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%283%29.png)
+![localhost_49820_(Pixel 7) (4).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%284%29.png)
+![localhost_49820_(Pixel 7) (5).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%285%29.png)
+![localhost_49820_(Pixel 7) (6).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%286%29.png)
+![localhost_49820_(Pixel 7) (7).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%287%29.png)
+![localhost_49820_(Pixel 7) (8).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%288%29.png)
+![localhost_49820_(Pixel 7) (9).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%289%29.png)
+![localhost_49820_(Pixel 7).png](Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29.png)
+
+### Testing
+![localhost_49820_(Pixel 7) (1).png](Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%281%29.png)
+![localhost_49820_(Pixel 7) (2).png](Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%282%29.png)
+![localhost_49820_(Pixel 7) (3).png](Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%283%29.png)
+![localhost_49820_(Pixel 7) (4).png](Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%284%29.png)
+![localhost_49820_(Pixel 7).png](Screenshots/Testing/localhost_49820_%28Pixel%207%29.png)
+![localhost_57953_(Pixel 7) (10).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2810%29.png)
+![localhost_57953_(Pixel 7) (11).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2811%29.png)
+![localhost_57953_(Pixel 7) (12).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%2812%29.png)
+![localhost_57953_(Pixel 7) (3).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%283%29.png)
+![localhost_57953_(Pixel 7) (4).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%284%29.png)
+![localhost_57953_(Pixel 7) (5).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%285%29.png)
+![localhost_57953_(Pixel 7) (9).png](Screenshots/Testing/localhost_57953_%28Pixel%207%29%20%289%29.png)
 
 ---
 
