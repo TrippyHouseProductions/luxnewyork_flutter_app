@@ -92,7 +92,7 @@ Edit this constant if your backend runs on a different host or port.
 
 ## **Screenshots**
 
-### Dark Mode
+### Dark Mode (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Dark%20Mode/localhost_49820_%28Pixel%207%29%20%282%29.png" width="200"/></td>
@@ -112,7 +112,7 @@ Edit this constant if your backend runs on a different host or port.
   </tr>
 </table>
 
-### Landscape Mode
+### Landscape Mode (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Landscape%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
@@ -128,7 +128,7 @@ Edit this constant if your backend runs on a different host or port.
   </tr>
 </table>
 
-### Light Mode
+### Light Mode (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Light%20Mode/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
@@ -148,7 +148,7 @@ Edit this constant if your backend runs on a different host or port.
   </tr>
 </table>
 
-### Testing
+### Testing (SEMESTER 1)
 <table>
   <tr>
     <td><img src="Screenshots/Testing/localhost_49820_%28Pixel%207%29%20%281%29.png" width="200"/></td>
